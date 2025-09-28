@@ -11,13 +11,13 @@ using CairoMakie
 using Random
 using NamedTrajectories
 ⊗ = kron;
+# Problem parameters
 for seed in 1:10
-    # Problem parameters
     F = 0.9999 # target fidelity
-    Random.seed!(seed)
+    Random.seed!(5)
     T = 40
     Δt = 0.2
-    num_iter = 500
+    num_iter = 1000
     iSWAP = exp(1.0im * π / 4 * (PAULIS.X ⊗ PAULIS.X + PAULIS.Y ⊗ PAULIS.Y))
     SWAP = ComplexF64[1 0 0 0;
                         0 0 1 0;
@@ -46,31 +46,34 @@ for seed in 1:10
     pretty_print(X::AbstractMatrix) = Base.show(stdout, "text/plain", X);
     sys = QuantumSystem(H_drive)
     # Universal 
+    Random.seed!(seed)
     f_uni_prob = UnitaryUniversalProblem(
-        sys, U_goal, T, Δt, a_bound = 2.0, dda_bound=10.0;
+        sys, U_goal, T, Δt, a_bound = 3.0, dda_bound=10.0;
         activate_hyperspeed=true,
-        Q=1.0,
+        Q=0.0,
         piccolo_options=piccolo_opts
         )
     push!(f_uni_prob.constraints, FinalUnitaryFidelityConstraint(U_goal, :Ũ⃗, F, f_uni_prob.trajectory))
     solve!(f_uni_prob, max_iter=num_iter, print_level=5, options=IpoptOptions(eval_hessian=false))
     #solve!(f_uni_prob, max_iter=50, print_level=5)
     # Default
-    def = UnitarySmoothPulseProblem(sys, U_goal, T, Δt; a_bound = 2.0, dda_bound=10.0, Q_t=1.0)
+    Random.seed!(seed)
+    def = UnitarySmoothPulseProblem(sys, U_goal, T, Δt; a_bound = 3.0, dda_bound=10.0, Q_t=1.0)
     push!(def.constraints, FinalUnitaryFidelityConstraint(U_goal, :Ũ⃗, F, def.trajectory))
     solve!(def, max_iter=num_iter, print_level=5, options=IpoptOptions(eval_hessian=false))
     #solve!(def, max_iter=50, print_level=5)
     ∂ₑHₐ = [Z1, Z2, ZZ] ;
     # Toggling
     Hₑ_add = a -> ∂ₑHₐ
+    Random.seed!(seed)
     add_prob = UnitarySmoothPulseProblem(
                 sys, U_goal, T, Δt;
-                a_bound = 2.0,
+                a_bound = 3.0,
                 dda_bound=10.0,
                 piccolo_options=piccolo_opts,
                 activate_rob_loss=true,
                 H_err=Hₑ_add,
-                Q=1.0,
+                Q=0.0,
                 Q_t=1.0
             )
     push!(add_prob.constraints, FinalUnitaryFidelityConstraint(U_goal, :Ũ⃗, F, add_prob.trajectory))
@@ -85,13 +88,14 @@ for seed in 1:10
 
     var_count = length(∂ₑHₐ)
 
+    Random.seed!(seed)
     varadd_prob = UnitaryVariationalProblem(
         varsys_add, U_goal, T, Δt;
         robust_times = [[T] for i in 1:var_count],
-        a_bound = 2.0,
+        a_bound = 3.0,
         dda_bound = 10.0,
-        Q=1.0,
-        Q_r = 1.0,
+        Q=0.0,
+        Q_r = 1.0/(T^2),
         Q_s = 0.0,
         piccolo_options = PiccoloOptions(verbose=false)
     )
@@ -263,7 +267,7 @@ for seed in 1:10
         xticklabelrotation = π/6,
         xlabel = "Error operator",
         ylabel = "‖E‖",
-        title  = "Terminal norms of space curves (Z1, Z2, ZZ objective)",
+        title  = "Terminal norms of space curves (ZZ objective)",
     )
 
     CM.barplot!(ax, x, y; dodge = g, color = barcolors, gap = 0.25)
@@ -275,7 +279,7 @@ for seed in 1:10
     )
 
     display(fig)
-    save("terminal_spacecurve_norms_Z1_Z2_ZZ_seed$seed.png", fig)
+    save("terminal_spacecurve_norms_Z1_Z2_ZZ_T30_seed$seed.png", fig)
     using DataFrames, CSV
 
     # sanity check (optional but helpful)
@@ -292,5 +296,5 @@ for seed in 1:10
         Universal    = collect(Float64, last_uni),
     )
 
-    CSV.write("terminal_spacecurve_norms_Z1_Z2_ZZ_seed$seed.csv", df)
+    CSV.write("terminal_spacecurve_norms_Z1_Z2_ZZ_T30_seed$seed.csv", df)
 end
