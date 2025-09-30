@@ -16,8 +16,8 @@ const CM = CairoMakie
 
 # Problem parameters
 F = 0.9999
-num_iter = 1000
-hess_iter = 50
+num_iter = 2000
+hess_iter = 100
 
 function SpaceCurve(traj::NamedTrajectory, U_goal::AbstractMatrix{<:Number}, H_err::AbstractMatrix{<:Number})
     T = traj.T
@@ -56,7 +56,7 @@ function var_obj(prob::DirectTrajOptProblem, H_drive::Vector{Matrix{ComplexF64}}
     return norm(tr(ww'ww)) / (T * Δt)^2 / d
 end
 
-for idx in 1:1
+for idx in 2:10
     Random.seed!(idx)
     T = 40
     Δt = 0.2
