@@ -1,5 +1,5 @@
-import Pkg; Pkg.activate(@__DIR__); Pkg.instantiate();
-Pkg.develop(path="../../QuantumCollocation.jl")
+import Pkg; Pkg.activate(".."); Pkg.instantiate();
+Pkg.develop(path="../../../QuantumCollocation.jl")
 using PiccoloQuantumObjects
 using QuantumCollocation
 using ForwardDiff
@@ -16,7 +16,8 @@ const CM = CairoMakie
 
 # Problem parameters
 F = 0.9999
-num_iter = 2000
+num_iter = 1000
+hess_iter = 50
 
 function SpaceCurve(traj::NamedTrajectory, U_goal::AbstractMatrix{<:Number}, H_err::AbstractMatrix{<:Number})
     T = traj.T
@@ -87,24 +88,26 @@ for idx in 1:1
     var_obj_def_z = []
     var_obj_uni_z = []
 
-    Q_r_vals = exp10.(range(-5, stop = 6, length = 30))
-    ä = 10.0
-    for (j, Q_r) in enumerate(Q_r_vals)
+    Q_r = 1.0
+    ä_vals = exp10.(range(-3, stop = 0.301, length = 20))
+    a_bound = 5.0
+    for (j, ä) in enumerate(ä_vals)
 
         Random.seed!(idx)
         # Universal
         # baseline
         t_uni_prob = UnitaryUniversalProblem(
             sys, U_goal, T, Δt;
-            activate_hyperspeed=true, dda_bound=ä, 
+            activate_hyperspeed=true, a_bound=a_bound, dda_bound=ä, 
             Q=0.0,
             Q_t=Q_r,
             piccolo_options=piccolo_opts
             )
         push!(t_uni_prob.constraints, FinalUnitaryFidelityConstraint(U_goal, :Ũ⃗, F, t_uni_prob.trajectory))
-        solve!(t_uni_prob, max_iter=num_iter, print_level=5, options=IpoptOptions(eval_hessian=false))
+        solve!(t_uni_prob, max_iter=num_iter, print_level=1, options=IpoptOptions(eval_hessian=false))
+        solve!(t_uni_prob, max_iter=hess_iter, print_level=1)
 
-        #solve!(t_uni_prob, max_iter=20, print_level=5)
+        #solve!(t_uni_prob, max_iter=20, print_level=1)
         t_uni_G_x = norm(SpaceCurve(t_uni_prob.trajectory, U_goal, PAULIS.X)[end])
         t_uni_G_y = norm(SpaceCurve(t_uni_prob.trajectory, U_goal, PAULIS.Y)[end])
         t_uni_G_z = norm(SpaceCurve(t_uni_prob.trajectory, U_goal, PAULIS.Z)[end])
@@ -118,11 +121,12 @@ for idx in 1:1
         Random.seed!(idx)
         #Default
         # solve!(def, max_iter=500, print_level=1, options=IpoptOptions(eval_hessian=false))
-        def = UnitarySmoothPulseProblem(sys, U_goal, T, Δt, dda_bound=ä; Q_t=1.0)
+        def = UnitarySmoothPulseProblem(sys, U_goal, T, Δt, a_bound=a_bound, dda_bound=ä; Q_t=1.0)
         push!(def.constraints, FinalUnitaryFidelityConstraint(U_goal, :Ũ⃗, F, def.trajectory))
-        solve!(def, max_iter=num_iter, print_level=5, options=IpoptOptions(eval_hessian=false))
+        solve!(def, max_iter=num_iter, print_level=1, options=IpoptOptions(eval_hessian=false))
+        solve!(def, max_iter=hess_iter, print_level=1)
 
-        #solve!(def, max_iter=20, print_level=5)
+        #solve!(def, max_iter=20, print_level=1)
         def_G_x = norm(SpaceCurve(def.trajectory, U_goal, PAULIS.X)[end])
         def_G_y = norm(SpaceCurve(def.trajectory, U_goal, PAULIS.Y)[end])
         def_G_z = norm(SpaceCurve(def.trajectory, U_goal, PAULIS.Z)[end])
@@ -144,6 +148,7 @@ for idx in 1:1
         varadd_prob = UnitaryVariationalProblem(
                 varsys_add, U_goal, T, Δt;
                 robust_times=[[T]],
+                a_bound=a_bound, 
                 dda_bound = ä,
                 Q=0.0,
                 Q_s=0.0,
@@ -152,8 +157,9 @@ for idx in 1:1
             )
         
         push!(varadd_prob.constraints, FinalUnitaryFidelityConstraint(U_goal, :Ũ⃗, F, varadd_prob.trajectory))
-        solve!(varadd_prob, max_iter=num_iter, print_level=5, options=IpoptOptions(eval_hessian=false))
-        #solve!(varadd_prob, max_iter=20, print_level=5)
+        solve!(varadd_prob, max_iter=num_iter, print_level=1, options=IpoptOptions(eval_hessian=false))
+        solve!(varadd_prob, max_iter=hess_iter, print_level=1)
+        #solve!(varadd_prob, max_iter=20, print_level=1)
         varadd_G_x = norm(SpaceCurve(varadd_prob.trajectory, U_goal, PAULIS.X)[end])
         varadd_G_y = norm(SpaceCurve(varadd_prob.trajectory, U_goal, PAULIS.Y)[end])
         varadd_G_z = norm(SpaceCurve(varadd_prob.trajectory, U_goal, PAULIS.Z)[end])
@@ -163,23 +169,27 @@ for idx in 1:1
         push!(norm_G_var_y, varadd_G_y)
         push!(norm_G_var_z, varadd_G_z)
 
-        Random.seed!(idx)
         # Toggling
-
-        Hₑ_add = a -> ∂ₑH
-        add_prob = UnitarySmoothPulseProblem(
-            sys, U_goal, T, Δt;
-            dda_bound=ä,
-            piccolo_options=piccolo_opts,
-            activate_rob_loss=true,
-            H_err=Hₑ_add,
-            Q=0.0,
-            Q_t=Q_r,
+        Random.seed!(idx)
+        ∂ₑHₐ = [PAULIS.Z]
+        varsys_bik = VariationalQuantumSystem(
+            H_drive,
+            ∂ₑHₐ
         )
+        add_prob = UnitaryToggleProblem(
+                    varsys_bik, U_goal, T, Δt;
+                    a_bound=a_bound,
+                    dda_bound=ä,
+                    piccolo_options=piccolo_opts,
+                    Q=0.0,
+                    Q_t=Q_r
+                )
         push!(add_prob.constraints, FinalUnitaryFidelityConstraint(U_goal, :Ũ⃗, F, add_prob.trajectory))
-        solve!(add_prob, max_iter=num_iter, print_level=5, options=IpoptOptions(eval_hessian=false))
+        solve!(add_prob, max_iter=num_iter, print_level=1, options=IpoptOptions(eval_hessian=false))
+        solve!(varadd_prob, max_iter=hess_iter, print_level=1)
 
-        #solve!(add_prob, max_iter=20, print_level=5)
+
+        #solve!(add_prob, max_iter=20, print_level=1)
         add_G_x = norm(SpaceCurve(add_prob.trajectory, U_goal, PAULIS.X)[end])
         add_G_y = norm(SpaceCurve(add_prob.trajectory, U_goal, PAULIS.Y)[end])
         add_G_z = norm(SpaceCurve(add_prob.trajectory, U_goal, PAULIS.Z)[end])
@@ -261,8 +271,8 @@ for idx in 1:1
 
     fig = CM.Figure(size = (800, 600))
     ax = CM.Axis(fig[1, 1];
-        xlabel = "Qᵣ values",
-        ylabel = "‖E(Z)‖",
+        xlabel = "ä values",
+        ylabel = "Ɛ(Z)",
         xscale = log10,
         yscale = log10,
         title  = "Dephasing robustness vs Qᵣ, toggling objective",
@@ -270,37 +280,37 @@ for idx in 1:1
 
     colors = Makie.wong_colors()
 
-    scatter_with_line!(ax, Q_r_vals, norm_G_def_z; color=colors[1], label="Default")
-    scatter_with_line!(ax, Q_r_vals, norm_G_var_z; color=colors[2], label="Variational")
-    scatter_with_line!(ax, Q_r_vals, norm_G_add_z; color=colors[3], label="Toggling")
-    scatter_with_line!(ax, Q_r_vals, norm_G_uni_z; color=colors[4], label="Universal")
+    scatter_with_line!(ax, ä_vals, norm_G_def_z; color=colors[1], label="Default")
+    scatter_with_line!(ax, ä_vals, norm_G_var_z; color=colors[2], label="Ɛᵥ(Z)")
+    scatter_with_line!(ax, ä_vals, norm_G_add_z; color=colors[3], label="Ɛₜ(Z)")
+    scatter_with_line!(ax, ä_vals, norm_G_uni_z; color=colors[4], label="Ɛᵤ(Z)")
 
     CM.axislegend(ax; position = :rt)
     display(fig)
-    save("tog_obj_Q_r_sweep_dephasing_seed_$idx.png", fig)
+    save("tog_obj_acceleration_sweep_dephasing_seed_$idx.png", fig)
 
     fig = CM.Figure(size = (800, 600))
     ax = CM.Axis(fig[1, 1];
-        xlabel = "Qᵣ values",
-        ylabel = "‖Jᵥ(Z)‖",
+        xlabel = "ä values",
+        ylabel = "Ɛ(Z)",
         xscale = log10,
         yscale = log10,
-        title  = "Dephasing robustness vs Qᵣ, variational objective",
+        title  = "Dephasing robustness vs acceleration, variational objective",
     )
 
     colors = Makie.wong_colors()
 
-    scatter_with_line!(ax, Q_r_vals, var_obj_def_z; color=colors[1], label="Default")
-    scatter_with_line!(ax, Q_r_vals, var_obj_var_z; color=colors[2], label="Variational")
-    scatter_with_line!(ax, Q_r_vals, var_obj_tog_z; color=colors[3], label="Toggling")
-    scatter_with_line!(ax, Q_r_vals, var_obj_uni_z; color=colors[4], label="Universal")
+    scatter_with_line!(ax, ä_vals, var_obj_def_z; color=colors[1], label="Default")
+    scatter_with_line!(ax, ä_vals, var_obj_var_z; color=colors[2], label="Ɛᵥ(Z)")
+    scatter_with_line!(ax, ä_vals, var_obj_tog_z; color=colors[3], label="Ɛₜ(Z)")
+    scatter_with_line!(ax, ä_vals, var_obj_uni_z; color=colors[4], label="Ɛᵤ(Z)")
 
     CM.axislegend(ax; position = :rt)
     display(fig)
-    save("var_obj_Q_r_sweep_dephasing_seed_$idx.png", fig)
+    save("var_obj_acceleration_sweep_dephasing_seed_$idx.png", fig)
 
     df = DataFrame(
-        Q_r_vals      = Q_r_vals,
+        ä_vals      = ä_vals,
         norm_G_var_z = norm_G_var_z,
         norm_G_uni_z = norm_G_uni_z,
         norm_G_def_z = norm_G_def_z,
@@ -311,5 +321,5 @@ for idx in 1:1
         var_obj_var_z = var_obj_var_z
     )
 
-    CSV.write("Q_r_sweep_dephasing_seed_$idx.csv", df)
+    CSV.write("acceleration_sweep_dephasing_seed_$idx.csv", df)
 end

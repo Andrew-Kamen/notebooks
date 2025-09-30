@@ -1,5 +1,5 @@
-import Pkg; Pkg.activate(@__DIR__); Pkg.instantiate();
-Pkg.develop(path="../../QuantumCollocation.jl")
+import Pkg; Pkg.activate(".."); Pkg.instantiate();
+Pkg.develop(path="../../../QuantumCollocation.jl")
 using PiccoloQuantumObjects
 using QuantumCollocation
 using ForwardDiff
@@ -55,7 +55,7 @@ function var_obj(prob::DirectTrajOptProblem, H_drive::Vector{Matrix{ComplexF64}}
     return norm(tr(ww'ww)) / (T * Δt)^2 / d
 end
 
-for idx in 1:1
+for idx in 3:50
     Random.seed!(idx)
     T = 40
     Δt = 0.2
@@ -87,16 +87,17 @@ for idx in 1:1
     var_obj_def_z = []
     var_obj_uni_z = []
 
-    Q_r_vals = exp10.(range(-5, stop = 6, length = 30))
-    ä = 10.0
-    for (j, Q_r) in enumerate(Q_r_vals)
+    Q_r = 1.0
+    ä_vals = exp10.(range(-3, stop = 0.301, length = 20))
+    a_bound = 5.0
+    for (j, ä) in enumerate(ä_vals)
 
         Random.seed!(idx)
         # Universal
         # baseline
         t_uni_prob = UnitaryUniversalProblem(
             sys, U_goal, T, Δt;
-            activate_hyperspeed=true, dda_bound=ä, 
+            activate_hyperspeed=true, a_bound=a_bound, dda_bound=ä, 
             Q=0.0,
             Q_t=Q_r,
             piccolo_options=piccolo_opts
@@ -118,7 +119,7 @@ for idx in 1:1
         Random.seed!(idx)
         #Default
         # solve!(def, max_iter=500, print_level=1, options=IpoptOptions(eval_hessian=false))
-        def = UnitarySmoothPulseProblem(sys, U_goal, T, Δt, dda_bound=ä; Q_t=1.0)
+        def = UnitarySmoothPulseProblem(sys, U_goal, T, Δt, a_bound=a_bound, dda_bound=ä; Q_t=1.0)
         push!(def.constraints, FinalUnitaryFidelityConstraint(U_goal, :Ũ⃗, F, def.trajectory))
         solve!(def, max_iter=num_iter, print_level=5, options=IpoptOptions(eval_hessian=false))
 
@@ -144,6 +145,7 @@ for idx in 1:1
         varadd_prob = UnitaryVariationalProblem(
                 varsys_add, U_goal, T, Δt;
                 robust_times=[[T]],
+                a_bound=a_bound, 
                 dda_bound = ä,
                 Q=0.0,
                 Q_s=0.0,
@@ -169,6 +171,7 @@ for idx in 1:1
         Hₑ_add = a -> ∂ₑH
         add_prob = UnitarySmoothPulseProblem(
             sys, U_goal, T, Δt;
+            a_bound=a_bound, 
             dda_bound=ä,
             piccolo_options=piccolo_opts,
             activate_rob_loss=true,
@@ -261,8 +264,8 @@ for idx in 1:1
 
     fig = CM.Figure(size = (800, 600))
     ax = CM.Axis(fig[1, 1];
-        xlabel = "Qᵣ values",
-        ylabel = "‖E(Z)‖",
+        xlabel = "ä values",
+        ylabel = "Ɛ(Z)",
         xscale = log10,
         yscale = log10,
         title  = "Dephasing robustness vs Qᵣ, toggling objective",
@@ -270,37 +273,37 @@ for idx in 1:1
 
     colors = Makie.wong_colors()
 
-    scatter_with_line!(ax, Q_r_vals, norm_G_def_z; color=colors[1], label="Default")
-    scatter_with_line!(ax, Q_r_vals, norm_G_var_z; color=colors[2], label="Variational")
-    scatter_with_line!(ax, Q_r_vals, norm_G_add_z; color=colors[3], label="Toggling")
-    scatter_with_line!(ax, Q_r_vals, norm_G_uni_z; color=colors[4], label="Universal")
+    scatter_with_line!(ax, ä_vals, norm_G_def_z; color=colors[1], label="Default")
+    scatter_with_line!(ax, ä_vals, norm_G_var_z; color=colors[2], label="Ɛᵥ(Z)")
+    scatter_with_line!(ax, ä_vals, norm_G_add_z; color=colors[3], label="Ɛₜ(Z)")
+    scatter_with_line!(ax, ä_vals, norm_G_uni_z; color=colors[4], label="Ɛᵤ(Z)")
 
     CM.axislegend(ax; position = :rt)
     display(fig)
-    save("tog_obj_Q_r_sweep_dephasing_seed_$idx.png", fig)
+    save("tog_obj_acceleration_sweep_dephasing_seed_$idx.png", fig)
 
     fig = CM.Figure(size = (800, 600))
     ax = CM.Axis(fig[1, 1];
-        xlabel = "Qᵣ values",
-        ylabel = "‖Jᵥ(Z)‖",
+        xlabel = "ä values",
+        ylabel = "Ɛ(Z)",
         xscale = log10,
         yscale = log10,
-        title  = "Dephasing robustness vs Qᵣ, variational objective",
+        title  = "Dephasing robustness vs acceleration, variational objective",
     )
 
     colors = Makie.wong_colors()
 
-    scatter_with_line!(ax, Q_r_vals, var_obj_def_z; color=colors[1], label="Default")
-    scatter_with_line!(ax, Q_r_vals, var_obj_var_z; color=colors[2], label="Variational")
-    scatter_with_line!(ax, Q_r_vals, var_obj_tog_z; color=colors[3], label="Toggling")
-    scatter_with_line!(ax, Q_r_vals, var_obj_uni_z; color=colors[4], label="Universal")
+    scatter_with_line!(ax, ä_vals, var_obj_def_z; color=colors[1], label="Default")
+    scatter_with_line!(ax, ä_vals, var_obj_var_z; color=colors[2], label="Ɛᵥ(Z)")
+    scatter_with_line!(ax, ä_vals, var_obj_tog_z; color=colors[3], label="Ɛₜ(Z)")
+    scatter_with_line!(ax, ä_vals, var_obj_uni_z; color=colors[4], label="Ɛᵤ(Z)")
 
     CM.axislegend(ax; position = :rt)
     display(fig)
-    save("var_obj_Q_r_sweep_dephasing_seed_$idx.png", fig)
+    save("var_obj_acceleration_sweep_dephasing_seed_$idx.png", fig)
 
     df = DataFrame(
-        Q_r_vals      = Q_r_vals,
+        ä_vals      = ä_vals,
         norm_G_var_z = norm_G_var_z,
         norm_G_uni_z = norm_G_uni_z,
         norm_G_def_z = norm_G_def_z,
@@ -311,5 +314,5 @@ for idx in 1:1
         var_obj_var_z = var_obj_var_z
     )
 
-    CSV.write("Q_r_sweep_dephasing_seed_$idx.csv", df)
+    CSV.write("acceleration_sweep_dephasing_seed_$idx.csv", df)
 end
