@@ -1,0 +1,33 @@
+Constraint Sweep Analysis
+============================================================
+Timestamp: 20251002_130122
+
+Configuration:
+  Gate: Hadamard
+  Time horizon (T): 40
+  Time step range: 0.2 to 0.2
+  Number of points per sweep: 25
+  Number of seeds: 5
+  Random seeds: [42, 123, 456, 789, 1011]
+
+Sweep 1 (dda_bound):
+  Fixed a_bound: 4.0
+  dda_bound range: -0.2 to 1
+
+Sweep 2 (a_bound):
+  Fixed dda_bound: 4.0
+  a_bound range: -0.2 to 1
+
+Number of seeds per configuration: 5
+Seeds used: [42, 123, 456, 789, 1011]
+
+Sweep 1 (dda_bound variation):
+  Susceptibility range: 8.637e-03 to 1.269e-02
+  Objective range: 1.437e-02 to 1.594e-02
+  Mean fidelity: 0.999715 ± 0.000353
+  
+Sweep 2 (a_bound variation):
+  Susceptibility range: 8.768e-03 to 1.613e-02
+  Objective range: 1.437e-02 to 1.793e-02
+  Mean fidelity: 0.999329 ± 0.001024
+

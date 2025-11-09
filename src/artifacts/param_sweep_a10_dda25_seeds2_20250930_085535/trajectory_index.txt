@@ -1,0 +1,1048 @@
+Trajectory Index
+================================================================================
+Format: traj_a{i}_dda{j}_seed{k}.jld2
+
+Parameters:
+  a[1] = 3.162278e-01
+  a[2] = 4.084239e-01
+  a[3] = 5.274997e-01
+  a[4] = 6.812921e-01
+  a[5] = 8.799225e-01
+  a[6] = 1.136464e+00
+  a[7] = 1.467799e+00
+  a[8] = 1.895736e+00
+  a[9] = 2.448437e+00
+  a[10] = 3.162278e+00
+
+  dda[1] = 3.162278e-01
+  dda[2] = 3.480701e-01
+  dda[3] = 3.831187e-01
+  dda[4] = 4.216965e-01
+  dda[5] = 4.641589e-01
+  dda[6] = 5.108970e-01
+  dda[7] = 5.623413e-01
+  dda[8] = 6.189658e-01
+  dda[9] = 6.812921e-01
+  dda[10] = 7.498942e-01
+  dda[11] = 8.254042e-01
+  dda[12] = 9.085176e-01
+  dda[13] = 1.000000e+00
+  dda[14] = 1.100694e+00
+  dda[15] = 1.211528e+00
+  dda[16] = 1.333521e+00
+  dda[17] = 1.467799e+00
+  dda[18] = 1.615598e+00
+  dda[19] = 1.778279e+00
+  dda[20] = 1.957342e+00
+  dda[21] = 2.154435e+00
+  dda[22] = 2.371374e+00
+  dda[23] = 2.610157e+00
+  dda[24] = 2.872985e+00
+  dda[25] = 3.162278e+00
+
+  seed[1] = 42
+  seed[2] = 123
+
+================================================================================
+Summary by parameter combination:
+
+a[1]=3.162e-01, dda[1]=3.162e-01:
+  seed1: F=0.062879, t=45.51s, cost=3.7653e+03 → traj_a1_dda1_seed1.jld2
+  seed2: F=0.062879, t=12.26s, cost=3.7653e+03 → traj_a1_dda1_seed2.jld2
+
+a[1]=3.162e-01, dda[2]=3.481e-01:
+  seed1: F=0.075658, t=9.71s, cost=3.7157e+03 → traj_a1_dda2_seed1.jld2
+  seed2: F=0.075658, t=9.45s, cost=3.7157e+03 → traj_a1_dda2_seed2.jld2
+
+a[1]=3.162e-01, dda[3]=3.831e-01:
+  seed1: F=0.090898, t=14.21s, cost=3.6565e+03 → traj_a1_dda3_seed1.jld2
+  seed2: F=0.090898, t=9.85s, cost=3.6565e+03 → traj_a1_dda3_seed2.jld2
+
+a[1]=3.162e-01, dda[4]=4.217e-01:
+  seed1: F=0.109013, t=12.07s, cost=3.5862e+03 → traj_a1_dda4_seed1.jld2
+  seed2: F=0.109013, t=9.06s, cost=3.5862e+03 → traj_a1_dda4_seed2.jld2
+
+a[1]=3.162e-01, dda[5]=4.642e-01:
+  seed1: F=0.000000, t=13.53s, cost=3.5160e+03 → traj_a1_dda5_seed1.jld2
+  seed2: F=0.130451, t=12.16s, cost=3.5029e+03 → traj_a1_dda5_seed2.jld2
+
+a[1]=3.162e-01, dda[6]=5.109e-01:
+  seed1: F=0.155689, t=11.24s, cost=3.4048e+03 → traj_a1_dda6_seed1.jld2
+  seed2: F=0.155689, t=33.34s, cost=3.4048e+03 → traj_a1_dda6_seed2.jld2
+
+a[1]=3.162e-01, dda[7]=5.623e-01:
+  seed1: F=0.000000, t=14.60s, cost=3.3085e+03 → traj_a1_dda7_seed1.jld2
+  seed2: F=0.185208, t=11.24s, cost=3.2900e+03 → traj_a1_dda7_seed2.jld2
+
+a[1]=3.162e-01, dda[8]=6.190e-01:
+  seed1: F=0.219453, t=12.81s, cost=3.1565e+03 → traj_a1_dda8_seed1.jld2
+  seed2: F=0.219453, t=13.07s, cost=3.1565e+03 → traj_a1_dda8_seed2.jld2
+
+a[1]=3.162e-01, dda[9]=6.813e-01:
+  seed1: F=0.000000, t=17.60s, cost=3.0285e+03 → traj_a1_dda9_seed1.jld2
+  seed2: F=0.258773, t=10.23s, cost=3.0026e+03 → traj_a1_dda9_seed2.jld2
+
+a[1]=3.162e-01, dda[10]=7.499e-01:
+  seed1: F=0.000000, t=13.50s, cost=2.9553e+03 → traj_a1_dda10_seed1.jld2
+  seed2: F=0.279020, t=17.39s, cost=2.9274e+03 → traj_a1_dda10_seed2.jld2
+
+a[1]=3.162e-01, dda[11]=8.254e-01:
+  seed1: F=0.289368, t=39.76s, cost=2.8937e+03 → traj_a1_dda11_seed1.jld2
+  seed2: F=0.289368, t=37.13s, cost=2.8937e+03 → traj_a1_dda11_seed2.jld2
+
+a[1]=3.162e-01, dda[12]=9.085e-01:
+  seed1: F=0.299563, t=29.62s, cost=2.8611e+03 → traj_a1_dda12_seed1.jld2
+  seed2: F=0.299563, t=18.72s, cost=2.8611e+03 → traj_a1_dda12_seed2.jld2
+
+a[1]=3.162e-01, dda[13]=1.000e+00:
+  seed1: F=0.308402, t=13.08s, cost=2.8345e+03 → traj_a1_dda13_seed1.jld2
+  seed2: F=0.308402, t=15.02s, cost=2.8345e+03 → traj_a1_dda13_seed2.jld2
+
+a[1]=3.162e-01, dda[14]=1.101e+00:
+  seed1: F=0.318151, t=12.67s, cost=2.8051e+03 → traj_a1_dda14_seed1.jld2
+  seed2: F=0.000000, t=12.58s, cost=2.8369e+03 → traj_a1_dda14_seed2.jld2
+
+a[1]=3.162e-01, dda[15]=1.212e+00:
+  seed1: F=0.326240, t=21.02s, cost=2.7822e+03 → traj_a1_dda15_seed1.jld2
+  seed2: F=0.326240, t=12.46s, cost=2.7822e+03 → traj_a1_dda15_seed2.jld2
+
+a[1]=3.162e-01, dda[16]=1.334e+00:
+  seed1: F=0.334128, t=17.96s, cost=2.7606e+03 → traj_a1_dda16_seed1.jld2
+  seed2: F=0.334128, t=13.09s, cost=2.7606e+03 → traj_a1_dda16_seed2.jld2
+
+a[1]=3.162e-01, dda[17]=1.468e+00:
+  seed1: F=0.342810, t=17.81s, cost=2.7367e+03 → traj_a1_dda17_seed1.jld2
+  seed2: F=0.342810, t=14.85s, cost=2.7367e+03 → traj_a1_dda17_seed2.jld2
+
+a[1]=3.162e-01, dda[18]=1.616e+00:
+  seed1: F=0.349700, t=21.60s, cost=2.7192e+03 → traj_a1_dda18_seed1.jld2
+  seed2: F=0.349700, t=22.90s, cost=2.7192e+03 → traj_a1_dda18_seed2.jld2
+
+a[1]=3.162e-01, dda[19]=1.778e+00:
+  seed1: F=0.356263, t=22.19s, cost=2.7031e+03 → traj_a1_dda19_seed1.jld2
+  seed2: F=0.356263, t=20.56s, cost=2.7031e+03 → traj_a1_dda19_seed2.jld2
+
+a[1]=3.162e-01, dda[20]=1.957e+00:
+  seed1: F=0.363477, t=18.75s, cost=2.6854e+03 → traj_a1_dda20_seed1.jld2
+  seed2: F=0.363477, t=12.88s, cost=2.6854e+03 → traj_a1_dda20_seed2.jld2
+
+a[1]=3.162e-01, dda[21]=2.154e+00:
+  seed1: F=0.370604, t=20.95s, cost=2.6682e+03 → traj_a1_dda21_seed1.jld2
+  seed2: F=0.370604, t=19.90s, cost=2.6682e+03 → traj_a1_dda21_seed2.jld2
+
+a[1]=3.162e-01, dda[22]=2.371e+00:
+  seed1: F=0.375578, t=16.62s, cost=2.6577e+03 → traj_a1_dda22_seed1.jld2
+  seed2: F=0.375578, t=19.22s, cost=2.6577e+03 → traj_a1_dda22_seed2.jld2
+
+a[1]=3.162e-01, dda[23]=2.610e+00:
+  seed1: F=0.381042, t=35.06s, cost=2.6460e+03 → traj_a1_dda23_seed1.jld2
+  seed2: F=0.381042, t=23.42s, cost=2.6460e+03 → traj_a1_dda23_seed2.jld2
+
+a[1]=3.162e-01, dda[24]=2.873e+00:
+  seed1: F=0.387042, t=19.80s, cost=2.6332e+03 → traj_a1_dda24_seed1.jld2
+  seed2: F=0.387042, t=21.32s, cost=2.6332e+03 → traj_a1_dda24_seed2.jld2
+
+a[1]=3.162e-01, dda[25]=3.162e+00:
+  seed1: F=0.393622, t=21.40s, cost=2.6191e+03 → traj_a1_dda25_seed1.jld2
+  seed2: F=0.393622, t=22.96s, cost=2.6191e+03 → traj_a1_dda25_seed2.jld2
+
+a[2]=4.084e-01, dda[1]=3.162e-01:
+  seed1: F=0.062879, t=10.83s, cost=3.7653e+03 → traj_a2_dda1_seed1.jld2
+  seed2: F=0.000000, t=7.45s, cost=3.7716e+03 → traj_a2_dda1_seed2.jld2
+
+a[2]=4.084e-01, dda[2]=3.481e-01:
+  seed1: F=0.075658, t=12.90s, cost=3.7157e+03 → traj_a2_dda2_seed1.jld2
+  seed2: F=0.075658, t=10.56s, cost=3.7157e+03 → traj_a2_dda2_seed2.jld2
+
+a[2]=4.084e-01, dda[3]=3.831e-01:
+  seed1: F=0.090898, t=17.10s, cost=3.6565e+03 → traj_a2_dda3_seed1.jld2
+  seed2: F=0.090898, t=13.80s, cost=3.6565e+03 → traj_a2_dda3_seed2.jld2
+
+a[2]=4.084e-01, dda[4]=4.217e-01:
+  seed1: F=0.109013, t=9.98s, cost=3.5862e+03 → traj_a2_dda4_seed1.jld2
+  seed2: F=0.109013, t=11.97s, cost=3.5862e+03 → traj_a2_dda4_seed2.jld2
+
+a[2]=4.084e-01, dda[5]=4.642e-01:
+  seed1: F=0.130451, t=11.50s, cost=3.5029e+03 → traj_a2_dda5_seed1.jld2
+  seed2: F=0.130451, t=10.58s, cost=3.5029e+03 → traj_a2_dda5_seed2.jld2
+
+a[2]=4.084e-01, dda[6]=5.109e-01:
+  seed1: F=0.155689, t=12.50s, cost=3.4048e+03 → traj_a2_dda6_seed1.jld2
+  seed2: F=0.155689, t=11.68s, cost=3.4048e+03 → traj_a2_dda6_seed2.jld2
+
+a[2]=4.084e-01, dda[7]=5.623e-01:
+  seed1: F=0.185208, t=10.53s, cost=3.2900e+03 → traj_a2_dda7_seed1.jld2
+  seed2: F=0.000000, t=13.59s, cost=3.3085e+03 → traj_a2_dda7_seed2.jld2
+
+a[2]=4.084e-01, dda[8]=6.190e-01:
+  seed1: F=0.219453, t=12.32s, cost=3.1565e+03 → traj_a2_dda8_seed1.jld2
+  seed2: F=0.000000, t=11.79s, cost=3.1784e+03 → traj_a2_dda8_seed2.jld2
+
+a[2]=4.084e-01, dda[9]=6.813e-01:
+  seed1: F=0.258773, t=13.12s, cost=3.0026e+03 → traj_a2_dda9_seed1.jld2
+  seed2: F=0.000000, t=11.06s, cost=3.0285e+03 → traj_a2_dda9_seed2.jld2
+
+a[2]=4.084e-01, dda[10]=7.499e-01:
+  seed1: F=0.303332, t=12.39s, cost=2.8273e+03 → traj_a2_dda10_seed1.jld2
+  seed2: F=0.303332, t=13.93s, cost=2.8273e+03 → traj_a2_dda10_seed2.jld2
+
+a[2]=4.084e-01, dda[11]=8.254e-01:
+  seed1: F=0.000000, t=23.56s, cost=2.6654e+03 → traj_a2_dda11_seed1.jld2
+  seed2: F=0.352983, t=15.39s, cost=2.6301e+03 → traj_a2_dda11_seed2.jld2
+
+a[2]=4.084e-01, dda[12]=9.085e-01:
+  seed1: F=0.000000, t=39.66s, cost=2.4543e+03 → traj_a2_dda12_seed1.jld2
+  seed2: F=0.406626, t=39.12s, cost=2.4136e+03 → traj_a2_dda12_seed2.jld2
+
+a[2]=4.084e-01, dda[13]=1.000e+00:
+  seed1: F=0.000000, t=11.12s, cost=2.4139e+03 → traj_a2_dda13_seed1.jld2
+  seed2: F=0.418926, t=8.92s, cost=2.3720e+03 → traj_a2_dda13_seed2.jld2
+
+a[2]=4.084e-01, dda[14]=1.101e+00:
+  seed1: F=0.432332, t=11.04s, cost=2.3263e+03 → traj_a2_dda14_seed1.jld2
+  seed2: F=0.432332, t=12.01s, cost=2.3263e+03 → traj_a2_dda14_seed2.jld2
+
+a[2]=4.084e-01, dda[15]=1.212e+00:
+  seed1: F=0.443871, t=11.42s, cost=2.2887e+03 → traj_a2_dda15_seed1.jld2
+  seed2: F=0.443871, t=13.86s, cost=2.2887e+03 → traj_a2_dda15_seed2.jld2
+
+a[2]=4.084e-01, dda[16]=1.334e+00:
+  seed1: F=0.454963, t=9.55s, cost=2.2533e+03 → traj_a2_dda16_seed1.jld2
+  seed2: F=0.000000, t=11.45s, cost=2.2988e+03 → traj_a2_dda16_seed2.jld2
+
+a[2]=4.084e-01, dda[17]=1.468e+00:
+  seed1: F=0.466722, t=15.57s, cost=2.2157e+03 → traj_a2_dda17_seed1.jld2
+  seed2: F=0.466722, t=10.76s, cost=2.2157e+03 → traj_a2_dda17_seed2.jld2
+
+a[2]=4.084e-01, dda[18]=1.616e+00:
+  seed1: F=0.475425, t=18.13s, cost=2.1902e+03 → traj_a2_dda18_seed1.jld2
+  seed2: F=0.475425, t=15.61s, cost=2.1902e+03 → traj_a2_dda18_seed2.jld2
+
+a[2]=4.084e-01, dda[19]=1.778e+00:
+  seed1: F=0.484868, t=23.09s, cost=2.1622e+03 → traj_a2_dda19_seed1.jld2
+  seed2: F=0.484868, t=13.71s, cost=2.1622e+03 → traj_a2_dda19_seed2.jld2
+
+a[2]=4.084e-01, dda[20]=1.957e+00:
+  seed1: F=0.494823, t=22.13s, cost=2.1325e+03 → traj_a2_dda20_seed1.jld2
+  seed2: F=0.494823, t=20.77s, cost=2.1325e+03 → traj_a2_dda20_seed2.jld2
+
+a[2]=4.084e-01, dda[21]=2.154e+00:
+  seed1: F=0.501745, t=19.18s, cost=2.1140e+03 → traj_a2_dda21_seed1.jld2
+  seed2: F=0.501745, t=20.48s, cost=2.1140e+03 → traj_a2_dda21_seed2.jld2
+
+a[2]=4.084e-01, dda[22]=2.371e+00:
+  seed1: F=0.509252, t=16.38s, cost=2.0936e+03 → traj_a2_dda22_seed1.jld2
+  seed2: F=0.509252, t=16.83s, cost=2.0936e+03 → traj_a2_dda22_seed2.jld2
+
+a[2]=4.084e-01, dda[23]=2.610e+00:
+  seed1: F=0.517374, t=39.73s, cost=2.0713e+03 → traj_a2_dda23_seed1.jld2
+  seed2: F=0.517374, t=18.91s, cost=2.0713e+03 → traj_a2_dda23_seed2.jld2
+
+a[2]=4.084e-01, dda[24]=2.873e+00:
+  seed1: F=0.524008, t=40.80s, cost=2.0540e+03 → traj_a2_dda24_seed1.jld2
+  seed2: F=0.524008, t=17.64s, cost=2.0540e+03 → traj_a2_dda24_seed2.jld2
+
+a[2]=4.084e-01, dda[25]=3.162e+00:
+  seed1: F=0.529449, t=13.51s, cost=2.0409e+03 → traj_a2_dda25_seed1.jld2
+  seed2: F=0.529449, t=16.69s, cost=2.0409e+03 → traj_a2_dda25_seed2.jld2
+
+a[3]=5.275e-01, dda[1]=3.162e-01:
+  seed1: F=0.062879, t=8.46s, cost=3.7653e+03 → traj_a3_dda1_seed1.jld2
+  seed2: F=0.062879, t=32.72s, cost=3.7653e+03 → traj_a3_dda1_seed2.jld2
+
+a[3]=5.275e-01, dda[2]=3.481e-01:
+  seed1: F=0.075658, t=12.62s, cost=3.7157e+03 → traj_a3_dda2_seed1.jld2
+  seed2: F=0.075658, t=9.93s, cost=3.7157e+03 → traj_a3_dda2_seed2.jld2
+
+a[3]=5.275e-01, dda[3]=3.831e-01:
+  seed1: F=0.090898, t=12.89s, cost=3.6565e+03 → traj_a3_dda3_seed1.jld2
+  seed2: F=0.090898, t=10.97s, cost=3.6565e+03 → traj_a3_dda3_seed2.jld2
+
+a[3]=5.275e-01, dda[4]=4.217e-01:
+  seed1: F=0.000000, t=9.90s, cost=3.5971e+03 → traj_a3_dda4_seed1.jld2
+  seed2: F=0.109013, t=12.48s, cost=3.5862e+03 → traj_a3_dda4_seed2.jld2
+
+a[3]=5.275e-01, dda[5]=4.642e-01:
+  seed1: F=0.130451, t=11.13s, cost=3.5029e+03 → traj_a3_dda5_seed1.jld2
+  seed2: F=0.130451, t=10.04s, cost=3.5029e+03 → traj_a3_dda5_seed2.jld2
+
+a[3]=5.275e-01, dda[6]=5.109e-01:
+  seed1: F=0.155689, t=12.44s, cost=3.4048e+03 → traj_a3_dda6_seed1.jld2
+  seed2: F=0.155689, t=10.25s, cost=3.4048e+03 → traj_a3_dda6_seed2.jld2
+
+a[3]=5.275e-01, dda[7]=5.623e-01:
+  seed1: F=0.185208, t=9.82s, cost=3.2900e+03 → traj_a3_dda7_seed1.jld2
+  seed2: F=0.185208, t=13.01s, cost=3.2900e+03 → traj_a3_dda7_seed2.jld2
+
+a[3]=5.275e-01, dda[8]=6.190e-01:
+  seed1: F=0.219453, t=34.73s, cost=3.1565e+03 → traj_a3_dda8_seed1.jld2
+  seed2: F=0.219453, t=9.89s, cost=3.1565e+03 → traj_a3_dda8_seed2.jld2
+
+a[3]=5.275e-01, dda[9]=6.813e-01:
+  seed1: F=0.258773, t=12.62s, cost=3.0026e+03 → traj_a3_dda9_seed1.jld2
+  seed2: F=0.258773, t=13.23s, cost=3.0026e+03 → traj_a3_dda9_seed2.jld2
+
+a[3]=5.275e-01, dda[10]=7.499e-01:
+  seed1: F=0.303332, t=15.56s, cost=2.8273e+03 → traj_a3_dda10_seed1.jld2
+  seed2: F=0.303332, t=12.24s, cost=2.8273e+03 → traj_a3_dda10_seed2.jld2
+
+a[3]=5.275e-01, dda[11]=8.254e-01:
+  seed1: F=0.352983, t=10.03s, cost=2.6301e+03 → traj_a3_dda11_seed1.jld2
+  seed2: F=0.352983, t=35.96s, cost=2.6301e+03 → traj_a3_dda11_seed2.jld2
+
+a[3]=5.275e-01, dda[12]=9.085e-01:
+  seed1: F=0.407088, t=11.24s, cost=2.4117e+03 → traj_a3_dda12_seed1.jld2
+  seed2: F=0.000000, t=11.06s, cost=2.4524e+03 → traj_a3_dda12_seed2.jld2
+
+a[3]=5.275e-01, dda[13]=1.000e+00:
+  seed1: F=0.464309, t=12.79s, cost=2.1747e+03 → traj_a3_dda13_seed1.jld2
+  seed2: F=0.000000, t=13.32s, cost=2.2211e+03 → traj_a3_dda13_seed2.jld2
+
+a[3]=5.275e-01, dda[14]=1.101e+00:
+  seed1: F=0.576553, t=38.07s, cost=1.8871e+03 → traj_a3_dda14_seed1.jld2
+  seed2: F=0.000000, t=16.34s, cost=1.9448e+03 → traj_a3_dda14_seed2.jld2
+
+a[3]=5.275e-01, dda[15]=1.212e+00:
+  seed1: F=0.000000, t=38.23s, cost=1.7946e+03 → traj_a3_dda15_seed1.jld2
+  seed2: F=0.563003, t=16.63s, cost=1.7384e+03 → traj_a3_dda15_seed2.jld2
+
+a[3]=5.275e-01, dda[16]=1.334e+00:
+  seed1: F=0.000000, t=16.12s, cost=1.7479e+03 → traj_a3_dda16_seed1.jld2
+  seed2: F=0.000000, t=13.26s, cost=1.7479e+03 → traj_a3_dda16_seed2.jld2
+
+a[3]=5.275e-01, dda[17]=1.468e+00:
+  seed1: F=0.000000, t=24.00s, cost=1.6978e+03 → traj_a3_dda17_seed1.jld2
+  seed2: F=0.000000, t=18.29s, cost=1.6978e+03 → traj_a3_dda17_seed2.jld2
+
+a[3]=5.275e-01, dda[18]=1.616e+00:
+  seed1: F=0.596367, t=18.54s, cost=1.6032e+03 → traj_a3_dda18_seed1.jld2
+  seed2: F=0.000000, t=14.80s, cost=1.6629e+03 → traj_a3_dda18_seed2.jld2
+
+a[3]=5.275e-01, dda[19]=1.778e+00:
+  seed1: F=0.605762, t=15.92s, cost=1.5645e+03 → traj_a3_dda19_seed1.jld2
+  seed2: F=0.605762, t=39.03s, cost=1.5645e+03 → traj_a3_dda19_seed2.jld2
+
+a[3]=5.275e-01, dda[20]=1.957e+00:
+  seed1: F=0.614123, t=16.50s, cost=1.5295e+03 → traj_a3_dda20_seed1.jld2
+  seed2: F=0.614123, t=17.00s, cost=1.5295e+03 → traj_a3_dda20_seed2.jld2
+
+a[3]=5.275e-01, dda[21]=2.154e+00:
+  seed1: F=0.620785, t=18.34s, cost=1.5024e+03 → traj_a3_dda21_seed1.jld2
+  seed2: F=0.620785, t=39.96s, cost=1.5024e+03 → traj_a3_dda21_seed2.jld2
+
+a[3]=5.275e-01, dda[22]=2.371e+00:
+  seed1: F=0.627631, t=11.44s, cost=1.4729e+03 → traj_a3_dda22_seed1.jld2
+  seed2: F=0.627631, t=11.69s, cost=1.4729e+03 → traj_a3_dda22_seed2.jld2
+
+a[3]=5.275e-01, dda[23]=2.610e+00:
+  seed1: F=0.633535, t=13.64s, cost=1.4470e+03 → traj_a3_dda23_seed1.jld2
+  seed2: F=0.633535, t=14.89s, cost=1.4470e+03 → traj_a3_dda23_seed2.jld2
+
+a[3]=5.275e-01, dda[24]=2.873e+00:
+  seed1: F=0.637999, t=9.92s, cost=1.4281e+03 → traj_a3_dda24_seed1.jld2
+  seed2: F=0.637999, t=13.76s, cost=1.4281e+03 → traj_a3_dda24_seed2.jld2
+
+a[3]=5.275e-01, dda[25]=3.162e+00:
+  seed1: F=0.642554, t=11.30s, cost=1.4075e+03 → traj_a3_dda25_seed1.jld2
+  seed2: F=0.642554, t=11.36s, cost=1.4075e+03 → traj_a3_dda25_seed2.jld2
+
+a[4]=6.813e-01, dda[1]=3.162e-01:
+  seed1: F=0.062879, t=12.34s, cost=3.7653e+03 → traj_a4_dda1_seed1.jld2
+  seed2: F=0.062879, t=10.23s, cost=3.7653e+03 → traj_a4_dda1_seed2.jld2
+
+a[4]=6.813e-01, dda[2]=3.481e-01:
+  seed1: F=0.075658, t=9.36s, cost=3.7157e+03 → traj_a4_dda2_seed1.jld2
+  seed2: F=0.075658, t=13.76s, cost=3.7157e+03 → traj_a4_dda2_seed2.jld2
+
+a[4]=6.813e-01, dda[3]=3.831e-01:
+  seed1: F=0.090898, t=9.81s, cost=3.6565e+03 → traj_a4_dda3_seed1.jld2
+  seed2: F=0.090898, t=9.42s, cost=3.6565e+03 → traj_a4_dda3_seed2.jld2
+
+a[4]=6.813e-01, dda[4]=4.217e-01:
+  seed1: F=0.109013, t=12.52s, cost=3.5862e+03 → traj_a4_dda4_seed1.jld2
+  seed2: F=0.109013, t=9.99s, cost=3.5862e+03 → traj_a4_dda4_seed2.jld2
+
+a[4]=6.813e-01, dda[5]=4.642e-01:
+  seed1: F=0.130451, t=9.39s, cost=3.5029e+03 → traj_a4_dda5_seed1.jld2
+  seed2: F=0.130451, t=13.54s, cost=3.5029e+03 → traj_a4_dda5_seed2.jld2
+
+a[4]=6.813e-01, dda[6]=5.109e-01:
+  seed1: F=0.155689, t=12.01s, cost=3.4048e+03 → traj_a4_dda6_seed1.jld2
+  seed2: F=0.155689, t=11.15s, cost=3.4048e+03 → traj_a4_dda6_seed2.jld2
+
+a[4]=6.813e-01, dda[7]=5.623e-01:
+  seed1: F=0.000000, t=43.96s, cost=3.3085e+03 → traj_a4_dda7_seed1.jld2
+  seed2: F=0.185208, t=9.63s, cost=3.2900e+03 → traj_a4_dda7_seed2.jld2
+
+a[4]=6.813e-01, dda[8]=6.190e-01:
+  seed1: F=0.219453, t=12.50s, cost=3.1565e+03 → traj_a4_dda8_seed1.jld2
+  seed2: F=0.219453, t=11.59s, cost=3.1565e+03 → traj_a4_dda8_seed2.jld2
+
+a[4]=6.813e-01, dda[9]=6.813e-01:
+  seed1: F=0.459361, t=67.93s, cost=2.3238e+03 → traj_a4_dda9_seed1.jld2
+  seed2: F=0.258773, t=11.24s, cost=3.0026e+03 → traj_a4_dda9_seed2.jld2
+
+a[4]=6.813e-01, dda[10]=7.499e-01:
+  seed1: F=0.482746, t=14.81s, cost=2.0539e+03 → traj_a4_dda10_seed1.jld2
+  seed2: F=0.482746, t=12.68s, cost=2.0539e+03 → traj_a4_dda10_seed2.jld2
+
+a[4]=6.813e-01, dda[11]=8.254e-01:
+  seed1: F=0.538679, t=38.45s, cost=1.8418e+03 → traj_a4_dda11_seed1.jld2
+  seed2: F=0.538678, t=15.10s, cost=1.8418e+03 → traj_a4_dda11_seed2.jld2
+
+a[4]=6.813e-01, dda[12]=9.085e-01:
+  seed1: F=0.584489, t=15.11s, cost=1.6748e+03 → traj_a4_dda12_seed1.jld2
+  seed2: F=0.407088, t=25.91s, cost=2.4117e+03 → traj_a4_dda12_seed2.jld2
+
+a[4]=6.813e-01, dda[13]=1.000e+00:
+  seed1: F=0.464309, t=11.67s, cost=2.1747e+03 → traj_a4_dda13_seed1.jld2
+  seed2: F=0.464309, t=12.69s, cost=2.1747e+03 → traj_a4_dda13_seed2.jld2
+
+a[4]=6.813e-01, dda[14]=1.101e+00:
+  seed1: F=0.000000, t=43.14s, cost=1.4837e+03 → traj_a4_dda14_seed1.jld2
+  seed2: F=0.644777, t=38.41s, cost=1.4192e+03 → traj_a4_dda14_seed2.jld2
+
+a[4]=6.813e-01, dda[15]=1.212e+00:
+  seed1: F=0.000000, t=15.08s, cost=1.3789e+03 → traj_a4_dda15_seed1.jld2
+  seed2: F=0.660009, t=40.49s, cost=1.3128e+03 → traj_a4_dda15_seed2.jld2
+
+a[4]=6.813e-01, dda[16]=1.334e+00:
+  seed1: F=0.000000, t=40.04s, cost=1.2806e+03 → traj_a4_dda16_seed1.jld2
+  seed2: F=0.000000, t=39.01s, cost=1.2806e+03 → traj_a4_dda16_seed2.jld2
+
+a[4]=6.813e-01, dda[17]=1.468e+00:
+  seed1: F=0.000000, t=35.46s, cost=1.1866e+03 → traj_a4_dda17_seed1.jld2
+  seed2: F=0.000000, t=17.44s, cost=1.1867e+03 → traj_a4_dda17_seed2.jld2
+
+a[4]=6.813e-01, dda[18]=1.616e+00:
+  seed1: F=0.000000, t=14.27s, cost=1.1308e+03 → traj_a4_dda18_seed1.jld2
+  seed2: F=0.000000, t=15.61s, cost=1.1308e+03 → traj_a4_dda18_seed2.jld2
+
+a[4]=6.813e-01, dda[19]=1.778e+00:
+  seed1: F=0.000000, t=37.34s, cost=1.0904e+03 → traj_a4_dda19_seed1.jld2
+  seed2: F=0.000000, t=15.49s, cost=1.0904e+03 → traj_a4_dda19_seed2.jld2
+
+a[4]=6.813e-01, dda[20]=1.957e+00:
+  seed1: F=0.000000, t=13.34s, cost=1.0534e+03 → traj_a4_dda20_seed1.jld2
+  seed2: F=0.666572, t=11.29s, cost=9.8672e+02 → traj_a4_dda20_seed2.jld2
+
+a[4]=6.813e-01, dda[21]=2.154e+00:
+  seed1: F=0.000000, t=12.28s, cost=1.0248e+03 → traj_a4_dda21_seed1.jld2
+  seed2: F=0.665565, t=11.26s, cost=9.5821e+02 → traj_a4_dda21_seed2.jld2
+
+a[4]=6.813e-01, dda[22]=2.371e+00:
+  seed1: F=0.000000, t=13.41s, cost=9.9448e+02 → traj_a4_dda22_seed1.jld2
+  seed2: F=0.663194, t=13.61s, cost=9.2816e+02 → traj_a4_dda22_seed2.jld2
+
+a[4]=6.813e-01, dda[23]=2.610e+00:
+  seed1: F=0.000000, t=10.68s, cost=9.7207e+02 → traj_a4_dda23_seed1.jld2
+  seed2: F=0.660234, t=12.03s, cost=9.0605e+02 → traj_a4_dda23_seed2.jld2
+
+a[4]=6.813e-01, dda[24]=2.873e+00:
+  seed1: F=0.000000, t=10.53s, cost=9.5182e+02 → traj_a4_dda24_seed1.jld2
+  seed2: F=0.656487, t=10.14s, cost=8.8617e+02 → traj_a4_dda24_seed2.jld2
+
+a[4]=6.813e-01, dda[25]=3.162e+00:
+  seed1: F=0.000000, t=13.16s, cost=9.3026e+02 → traj_a4_dda25_seed1.jld2
+  seed2: F=0.651393, t=10.56s, cost=8.6512e+02 → traj_a4_dda25_seed2.jld2
+
+a[5]=8.799e-01, dda[1]=3.162e-01:
+  seed1: F=0.000000, t=7.80s, cost=3.7716e+03 → traj_a5_dda1_seed1.jld2
+  seed2: F=0.000000, t=13.32s, cost=3.7716e+03 → traj_a5_dda1_seed2.jld2
+
+a[5]=8.799e-01, dda[2]=3.481e-01:
+  seed1: F=0.000000, t=9.54s, cost=3.7233e+03 → traj_a5_dda2_seed1.jld2
+  seed2: F=0.000000, t=10.29s, cost=3.7233e+03 → traj_a5_dda2_seed2.jld2
+
+a[5]=8.799e-01, dda[3]=3.831e-01:
+  seed1: F=0.000000, t=12.65s, cost=3.6656e+03 → traj_a5_dda3_seed1.jld2
+  seed2: F=0.090898, t=9.62s, cost=3.6565e+03 → traj_a5_dda3_seed2.jld2
+
+a[5]=8.799e-01, dda[4]=4.217e-01:
+  seed1: F=0.109013, t=10.47s, cost=3.5862e+03 → traj_a5_dda4_seed1.jld2
+  seed2: F=0.109013, t=12.63s, cost=3.5862e+03 → traj_a5_dda4_seed2.jld2
+
+a[5]=8.799e-01, dda[5]=4.642e-01:
+  seed1: F=0.000000, t=67.84s, cost=3.8854e+03 → traj_a5_dda5_seed1.jld2
+  seed2: F=0.130451, t=9.75s, cost=3.5029e+03 → traj_a5_dda5_seed2.jld2
+
+a[5]=8.799e-01, dda[6]=5.109e-01:
+  seed1: F=0.000000, t=79.12s, cost=3.4309e+03 → traj_a5_dda6_seed1.jld2
+  seed2: F=0.155689, t=10.63s, cost=3.4048e+03 → traj_a5_dda6_seed2.jld2
+
+a[5]=8.799e-01, dda[7]=5.623e-01:
+  seed1: F=0.000000, t=67.52s, cost=3.0309e+03 → traj_a5_dda7_seed1.jld2
+  seed2: F=0.185208, t=14.76s, cost=3.2900e+03 → traj_a5_dda7_seed2.jld2
+
+a[5]=8.799e-01, dda[8]=6.190e-01:
+  seed1: F=0.000000, t=68.60s, cost=2.6790e+03 → traj_a5_dda8_seed1.jld2
+  seed2: F=0.000000, t=9.69s, cost=3.1784e+03 → traj_a5_dda8_seed2.jld2
+
+a[5]=8.799e-01, dda[9]=6.813e-01:
+  seed1: F=0.000000, t=69.83s, cost=2.3693e+03 → traj_a5_dda9_seed1.jld2
+  seed2: F=0.000000, t=36.21s, cost=3.0285e+03 → traj_a5_dda9_seed2.jld2
+
+a[5]=8.799e-01, dda[10]=7.499e-01:
+  seed1: F=0.000000, t=67.23s, cost=2.0968e+03 → traj_a5_dda10_seed1.jld2
+  seed2: F=0.000000, t=11.00s, cost=2.8576e+03 → traj_a5_dda10_seed2.jld2
+
+a[5]=8.799e-01, dda[11]=8.254e-01:
+  seed1: F=0.461817, t=71.55s, cost=1.8114e+03 → traj_a5_dda11_seed1.jld2
+  seed2: F=0.461817, t=67.79s, cost=1.8114e+03 → traj_a5_dda11_seed2.jld2
+
+a[5]=8.799e-01, dda[12]=9.085e-01:
+  seed1: F=0.000000, t=67.33s, cost=1.6461e+03 → traj_a5_dda12_seed1.jld2
+  seed2: F=0.463298, t=70.97s, cost=1.6004e+03 → traj_a5_dda12_seed2.jld2
+
+a[5]=8.799e-01, dda[13]=1.000e+00:
+  seed1: F=0.000000, t=70.23s, cost=1.4604e+03 → traj_a5_dda13_seed1.jld2
+  seed2: F=0.000000, t=68.38s, cost=1.4604e+03 → traj_a5_dda13_seed2.jld2
+
+a[5]=8.799e-01, dda[14]=1.101e+00:
+  seed1: F=0.000000, t=66.41s, cost=1.2971e+03 → traj_a5_dda14_seed1.jld2
+  seed2: F=0.000000, t=85.48s, cost=1.2971e+03 → traj_a5_dda14_seed2.jld2
+
+a[5]=8.799e-01, dda[15]=1.212e+00:
+  seed1: F=0.000000, t=70.40s, cost=1.1533e+03 → traj_a5_dda15_seed1.jld2
+  seed2: F=0.000000, t=67.25s, cost=1.1533e+03 → traj_a5_dda15_seed2.jld2
+
+a[5]=8.799e-01, dda[16]=1.334e+00:
+  seed1: F=0.471418, t=72.51s, cost=9.8072e+02 → traj_a5_dda16_seed1.jld2
+  seed2: F=0.471419, t=68.47s, cost=9.8072e+02 → traj_a5_dda16_seed2.jld2
+
+a[5]=8.799e-01, dda[17]=1.468e+00:
+  seed1: F=0.000000, t=64.00s, cost=9.1557e+02 → traj_a5_dda17_seed1.jld2
+  seed2: F=0.474148, t=44.11s, cost=8.6931e+02 → traj_a5_dda17_seed2.jld2
+
+a[5]=8.799e-01, dda[18]=1.616e+00:
+  seed1: F=0.482813, t=29.69s, cost=7.7129e+02 → traj_a5_dda18_seed1.jld2
+  seed2: F=0.482813, t=30.21s, cost=7.7129e+02 → traj_a5_dda18_seed2.jld2
+
+a[5]=8.799e-01, dda[19]=1.778e+00:
+  seed1: F=0.000000, t=11.70s, cost=7.4533e+02 → traj_a5_dda19_seed1.jld2
+  seed2: F=0.538681, t=41.67s, cost=6.9145e+02 → traj_a5_dda19_seed2.jld2
+
+a[5]=8.799e-01, dda[20]=1.957e+00:
+  seed1: F=0.000000, t=15.34s, cost=6.8732e+02 → traj_a5_dda20_seed1.jld2
+  seed2: F=0.583903, t=16.45s, cost=6.2894e+02 → traj_a5_dda20_seed2.jld2
+
+a[5]=8.799e-01, dda[21]=2.154e+00:
+  seed1: F=0.000000, t=10.39s, cost=6.6718e+02 → traj_a5_dda21_seed1.jld2
+  seed2: F=0.000000, t=37.06s, cost=6.6718e+02 → traj_a5_dda21_seed2.jld2
+
+a[5]=8.799e-01, dda[22]=2.371e+00:
+  seed1: F=0.000000, t=17.02s, cost=6.4706e+02 → traj_a5_dda22_seed1.jld2
+  seed2: F=0.542559, t=12.13s, cost=5.9281e+02 → traj_a5_dda22_seed2.jld2
+
+a[5]=8.799e-01, dda[23]=2.610e+00:
+  seed1: F=0.000000, t=16.94s, cost=6.3216e+02 → traj_a5_dda23_seed1.jld2
+  seed2: F=0.521563, t=16.29s, cost=5.8001e+02 → traj_a5_dda23_seed2.jld2
+
+a[5]=8.799e-01, dda[24]=2.873e+00:
+  seed1: F=0.000000, t=20.96s, cost=6.1947e+02 → traj_a5_dda24_seed1.jld2
+  seed2: F=0.500007, t=47.40s, cost=5.6947e+02 → traj_a5_dda24_seed2.jld2
+
+a[5]=8.799e-01, dda[25]=3.162e+00:
+  seed1: F=0.000000, t=13.60s, cost=6.0711e+02 → traj_a5_dda25_seed1.jld2
+  seed2: F=0.477309, t=29.61s, cost=5.5952e+02 → traj_a5_dda25_seed2.jld2
+
+a[6]=1.136e+00, dda[1]=3.162e-01:
+  seed1: F=0.000000, t=9.72s, cost=3.7716e+03 → traj_a6_dda1_seed1.jld2
+  seed2: F=0.000000, t=9.82s, cost=3.7716e+03 → traj_a6_dda1_seed2.jld2
+
+a[6]=1.136e+00, dda[2]=3.481e-01:
+  seed1: F=0.000000, t=13.08s, cost=3.7233e+03 → traj_a6_dda2_seed1.jld2
+  seed2: F=0.000000, t=9.91s, cost=3.7233e+03 → traj_a6_dda2_seed2.jld2
+
+a[6]=1.136e+00, dda[3]=3.831e-01:
+  seed1: F=0.000000, t=10.69s, cost=3.6656e+03 → traj_a6_dda3_seed1.jld2
+  seed2: F=0.000000, t=11.24s, cost=3.6656e+03 → traj_a6_dda3_seed2.jld2
+
+a[6]=1.136e+00, dda[4]=4.217e-01:
+  seed1: F=0.000000, t=9.66s, cost=3.5971e+03 → traj_a6_dda4_seed1.jld2
+  seed2: F=0.000000, t=12.30s, cost=3.5971e+03 → traj_a6_dda4_seed2.jld2
+
+a[6]=1.136e+00, dda[5]=4.642e-01:
+  seed1: F=0.130451, t=11.66s, cost=3.5029e+03 → traj_a6_dda5_seed1.jld2
+  seed2: F=0.000000, t=11.49s, cost=3.5160e+03 → traj_a6_dda5_seed2.jld2
+
+a[6]=1.136e+00, dda[6]=5.109e-01:
+  seed1: F=0.155689, t=34.98s, cost=3.4048e+03 → traj_a6_dda6_seed1.jld2
+  seed2: F=0.000000, t=11.73s, cost=3.4204e+03 → traj_a6_dda6_seed2.jld2
+
+a[6]=1.136e+00, dda[7]=5.623e-01:
+  seed1: F=0.185208, t=12.25s, cost=3.2900e+03 → traj_a6_dda7_seed1.jld2
+  seed2: F=0.000000, t=12.40s, cost=3.3085e+03 → traj_a6_dda7_seed2.jld2
+
+a[6]=1.136e+00, dda[8]=6.190e-01:
+  seed1: F=0.000000, t=15.99s, cost=3.1784e+03 → traj_a6_dda8_seed1.jld2
+  seed2: F=0.000000, t=10.18s, cost=3.1784e+03 → traj_a6_dda8_seed2.jld2
+
+a[6]=1.136e+00, dda[9]=6.813e-01:
+  seed1: F=0.000000, t=13.84s, cost=3.0285e+03 → traj_a6_dda9_seed1.jld2
+  seed2: F=0.000000, t=13.50s, cost=3.0285e+03 → traj_a6_dda9_seed2.jld2
+
+a[6]=1.136e+00, dda[10]=7.499e-01:
+  seed1: F=0.460505, t=67.36s, cost=2.0513e+03 → traj_a6_dda10_seed1.jld2
+  seed2: F=0.460505, t=72.73s, cost=2.0513e+03 → traj_a6_dda10_seed2.jld2
+
+a[6]=1.136e+00, dda[11]=8.254e-01:
+  seed1: F=0.461816, t=69.42s, cost=1.8114e+03 → traj_a6_dda11_seed1.jld2
+  seed2: F=0.000000, t=68.48s, cost=1.8571e+03 → traj_a6_dda11_seed2.jld2
+
+a[6]=1.136e+00, dda[12]=9.085e-01:
+  seed1: F=0.999997, t=77.13s, cost=5.2209e-02 → traj_a6_dda12_seed1.jld2
+  seed2: F=0.000000, t=71.46s, cost=1.6461e+03 → traj_a6_dda12_seed2.jld2
+
+a[6]=1.136e+00, dda[13]=1.000e+00:
+  seed1: F=0.000000, t=68.27s, cost=1.4604e+03 → traj_a6_dda13_seed1.jld2
+  seed2: F=0.000000, t=67.72s, cost=1.4604e+03 → traj_a6_dda13_seed2.jld2
+
+a[6]=1.136e+00, dda[14]=1.101e+00:
+  seed1: F=0.999998, t=78.51s, cost=4.6913e-02 → traj_a6_dda14_seed1.jld2
+  seed2: F=0.000000, t=69.83s, cost=1.2971e+03 → traj_a6_dda14_seed2.jld2
+
+a[6]=1.136e+00, dda[15]=1.212e+00:
+  seed1: F=0.999991, t=75.12s, cost=4.9463e-02 → traj_a6_dda15_seed1.jld2
+  seed2: F=0.000000, t=44.27s, cost=1.1533e+03 → traj_a6_dda15_seed2.jld2
+
+a[6]=1.136e+00, dda[16]=1.334e+00:
+  seed1: F=1.000000, t=77.38s, cost=4.6132e-02 → traj_a6_dda16_seed1.jld2
+  seed2: F=0.000000, t=67.40s, cost=1.0268e+03 → traj_a6_dda16_seed2.jld2
+
+a[6]=1.136e+00, dda[17]=1.468e+00:
+  seed1: F=0.000000, t=84.40s, cost=9.1555e+02 → traj_a6_dda17_seed1.jld2
+  seed2: F=0.000000, t=68.69s, cost=9.1555e+02 → traj_a6_dda17_seed2.jld2
+
+a[6]=1.136e+00, dda[18]=1.616e+00:
+  seed1: F=0.000000, t=67.44s, cost=8.1763e+02 → traj_a6_dda18_seed1.jld2
+  seed2: F=0.000000, t=70.55s, cost=8.1763e+02 → traj_a6_dda18_seed2.jld2
+
+a[6]=1.136e+00, dda[19]=1.778e+00:
+  seed1: F=0.480609, t=69.96s, cost=6.8487e+02 → traj_a6_dda19_seed1.jld2
+  seed2: F=0.000000, t=66.30s, cost=7.3146e+02 → traj_a6_dda19_seed2.jld2
+
+a[6]=1.136e+00, dda[20]=1.957e+00:
+  seed1: F=1.000000, t=77.66s, cost=4.5935e-02 → traj_a6_dda20_seed1.jld2
+  seed2: F=0.556075, t=77.32s, cost=7.0636e+02 → traj_a6_dda20_seed2.jld2
+
+a[6]=1.136e+00, dda[21]=2.154e+00:
+  seed1: F=0.003872, t=63.09s, cost=6.7846e+02 → traj_a6_dda21_seed1.jld2
+  seed2: F=0.999999, t=75.40s, cost=5.9461e-02 → traj_a6_dda21_seed2.jld2
+
+a[6]=1.136e+00, dda[22]=2.371e+00:
+  seed1: F=0.000000, t=17.93s, cost=5.4215e+02 → traj_a6_dda22_seed1.jld2
+  seed2: F=0.000000, t=14.81s, cost=5.4215e+02 → traj_a6_dda22_seed2.jld2
+
+a[6]=1.136e+00, dda[23]=2.610e+00:
+  seed1: F=0.999974, t=77.33s, cost=5.4921e-02 → traj_a6_dda23_seed1.jld2
+  seed2: F=0.000000, t=69.67s, cost=5.3518e+02 → traj_a6_dda23_seed2.jld2
+
+a[6]=1.136e+00, dda[24]=2.873e+00:
+  seed1: F=0.999994, t=74.94s, cost=4.6922e-02 → traj_a6_dda24_seed1.jld2
+  seed2: F=0.025975, t=69.24s, cost=5.2932e+02 → traj_a6_dda24_seed2.jld2
+
+a[6]=1.136e+00, dda[25]=3.162e+00:
+  seed1: F=1.000000, t=80.37s, cost=4.8428e-02 → traj_a6_dda25_seed1.jld2
+  seed2: F=0.040320, t=67.05s, cost=5.2310e+02 → traj_a6_dda25_seed2.jld2
+
+a[7]=1.468e+00, dda[1]=3.162e-01:
+  seed1: F=0.000000, t=69.80s, cost=6.4144e+03 → traj_a7_dda1_seed1.jld2
+  seed2: F=0.453860, t=49.17s, cost=6.3692e+03 → traj_a7_dda1_seed2.jld2
+
+a[7]=1.468e+00, dda[2]=3.481e-01:
+  seed1: F=0.000000, t=67.85s, cost=5.6562e+03 → traj_a7_dda2_seed1.jld2
+  seed2: F=0.454283, t=65.47s, cost=5.6110e+03 → traj_a7_dda2_seed2.jld2
+
+a[7]=1.468e+00, dda[3]=3.831e-01:
+  seed1: F=0.000000, t=86.76s, cost=4.9891e+03 → traj_a7_dda3_seed1.jld2
+  seed2: F=0.454763, t=69.21s, cost=4.9438e+03 → traj_a7_dda3_seed2.jld2
+
+a[7]=1.468e+00, dda[4]=4.217e-01:
+  seed1: F=0.000000, t=67.70s, cost=4.4020e+03 → traj_a7_dda4_seed1.jld2
+  seed2: F=0.000000, t=70.67s, cost=4.4020e+03 → traj_a7_dda4_seed2.jld2
+
+a[7]=1.468e+00, dda[5]=4.642e-01:
+  seed1: F=0.000000, t=69.74s, cost=3.8854e+03 → traj_a7_dda5_seed1.jld2
+  seed2: F=0.455927, t=68.01s, cost=3.8401e+03 → traj_a7_dda5_seed2.jld2
+
+a[7]=1.468e+00, dda[6]=5.109e-01:
+  seed1: F=0.000000, t=68.06s, cost=3.4309e+03 → traj_a7_dda6_seed1.jld2
+  seed2: F=0.155689, t=13.88s, cost=3.4048e+03 → traj_a7_dda6_seed2.jld2
+
+a[7]=1.468e+00, dda[7]=5.623e-01:
+  seed1: F=0.000000, t=68.54s, cost=3.0309e+03 → traj_a7_dda7_seed1.jld2
+  seed2: F=0.000000, t=67.67s, cost=3.0309e+03 → traj_a7_dda7_seed2.jld2
+
+a[7]=1.468e+00, dda[8]=6.190e-01:
+  seed1: F=0.000000, t=68.54s, cost=2.6790e+03 → traj_a7_dda8_seed1.jld2
+  seed2: F=0.000000, t=83.18s, cost=2.6790e+03 → traj_a7_dda8_seed2.jld2
+
+a[7]=1.468e+00, dda[9]=6.813e-01:
+  seed1: F=0.000000, t=69.93s, cost=2.3693e+03 → traj_a7_dda9_seed1.jld2
+  seed2: F=0.000000, t=69.39s, cost=2.3693e+03 → traj_a7_dda9_seed2.jld2
+
+a[7]=1.468e+00, dda[10]=7.499e-01:
+  seed1: F=0.000000, t=71.92s, cost=2.0968e+03 → traj_a7_dda10_seed1.jld2
+  seed2: F=0.000000, t=73.40s, cost=2.0968e+03 → traj_a7_dda10_seed2.jld2
+
+a[7]=1.468e+00, dda[11]=8.254e-01:
+  seed1: F=0.000000, t=69.12s, cost=1.8571e+03 → traj_a7_dda11_seed1.jld2
+  seed2: F=0.000000, t=68.61s, cost=1.8571e+03 → traj_a7_dda11_seed2.jld2
+
+a[7]=1.468e+00, dda[12]=9.085e-01:
+  seed1: F=0.000000, t=69.70s, cost=1.6461e+03 → traj_a7_dda12_seed1.jld2
+  seed2: F=0.000000, t=51.55s, cost=1.6461e+03 → traj_a7_dda12_seed2.jld2
+
+a[7]=1.468e+00, dda[13]=1.000e+00:
+  seed1: F=0.000000, t=68.01s, cost=1.4604e+03 → traj_a7_dda13_seed1.jld2
+  seed2: F=0.000000, t=64.96s, cost=1.4604e+03 → traj_a7_dda13_seed2.jld2
+
+a[7]=1.468e+00, dda[14]=1.101e+00:
+  seed1: F=0.000000, t=81.38s, cost=1.2971e+03 → traj_a7_dda14_seed1.jld2
+  seed2: F=0.000000, t=68.38s, cost=1.2971e+03 → traj_a7_dda14_seed2.jld2
+
+a[7]=1.468e+00, dda[15]=1.212e+00:
+  seed1: F=0.000000, t=68.63s, cost=1.1533e+03 → traj_a7_dda15_seed1.jld2
+  seed2: F=0.000000, t=70.35s, cost=1.1533e+03 → traj_a7_dda15_seed2.jld2
+
+a[7]=1.468e+00, dda[16]=1.334e+00:
+  seed1: F=0.000000, t=71.66s, cost=1.0268e+03 → traj_a7_dda16_seed1.jld2
+  seed2: F=1.000000, t=76.31s, cost=4.5726e-02 → traj_a7_dda16_seed2.jld2
+
+a[7]=1.468e+00, dda[17]=1.468e+00:
+  seed1: F=0.000000, t=69.41s, cost=9.1555e+02 → traj_a7_dda17_seed1.jld2
+  seed2: F=0.999999, t=78.14s, cost=5.9713e-02 → traj_a7_dda17_seed2.jld2
+
+a[7]=1.468e+00, dda[18]=1.616e+00:
+  seed1: F=0.000000, t=67.32s, cost=8.1763e+02 → traj_a7_dda18_seed1.jld2
+  seed2: F=1.000000, t=78.92s, cost=4.5598e-02 → traj_a7_dda18_seed2.jld2
+
+a[7]=1.468e+00, dda[19]=1.778e+00:
+  seed1: F=0.000000, t=68.94s, cost=7.3146e+02 → traj_a7_dda19_seed1.jld2
+  seed2: F=0.999999, t=76.01s, cost=4.9346e-02 → traj_a7_dda19_seed2.jld2
+
+a[7]=1.468e+00, dda[20]=1.957e+00:
+  seed1: F=0.484442, t=72.53s, cost=6.0885e+02 → traj_a7_dda20_seed1.jld2
+  seed2: F=0.999752, t=77.78s, cost=6.3392e-02 → traj_a7_dda20_seed2.jld2
+
+a[7]=1.468e+00, dda[21]=2.154e+00:
+  seed1: F=1.000000, t=78.22s, cost=4.5973e-02 → traj_a7_dda21_seed1.jld2
+  seed2: F=0.999656, t=81.34s, cost=1.2374e-01 → traj_a7_dda21_seed2.jld2
+
+a[7]=1.468e+00, dda[22]=2.371e+00:
+  seed1: F=0.000000, t=16.35s, cost=5.4215e+02 → traj_a7_dda22_seed1.jld2
+  seed2: F=0.999998, t=100.46s, cost=4.7438e-02 → traj_a7_dda22_seed2.jld2
+
+a[7]=1.468e+00, dda[23]=2.610e+00:
+  seed1: F=0.446503, t=67.58s, cost=4.9612e+02 → traj_a7_dda23_seed1.jld2
+  seed2: F=0.999997, t=79.56s, cost=4.6016e-02 → traj_a7_dda23_seed2.jld2
+
+a[7]=1.468e+00, dda[24]=2.873e+00:
+  seed1: F=0.512589, t=69.28s, cost=4.8157e+02 → traj_a7_dda24_seed1.jld2
+  seed2: F=0.999998, t=76.37s, cost=4.9188e-02 → traj_a7_dda24_seed2.jld2
+
+a[7]=1.468e+00, dda[25]=3.162e+00:
+  seed1: F=0.569346, t=71.47s, cost=4.6429e+02 → traj_a7_dda25_seed1.jld2
+  seed2: F=0.999997, t=78.95s, cost=4.9211e-02 → traj_a7_dda25_seed2.jld2
+
+a[8]=1.896e+00, dda[1]=3.162e-01:
+  seed1: F=0.453860, t=66.67s, cost=6.3692e+03 → traj_a8_dda1_seed1.jld2
+  seed2: F=0.453860, t=68.02s, cost=6.3692e+03 → traj_a8_dda1_seed2.jld2
+
+a[8]=1.896e+00, dda[2]=3.481e-01:
+  seed1: F=0.454283, t=68.26s, cost=5.6110e+03 → traj_a8_dda2_seed1.jld2
+  seed2: F=0.609856, t=75.00s, cost=1.1220e+03 → traj_a8_dda2_seed2.jld2
+
+a[8]=1.896e+00, dda[3]=3.831e-01:
+  seed1: F=0.454763, t=69.05s, cost=4.9438e+03 → traj_a8_dda3_seed1.jld2
+  seed2: F=0.454763, t=68.76s, cost=4.9438e+03 → traj_a8_dda3_seed2.jld2
+
+a[8]=1.896e+00, dda[4]=4.217e-01:
+  seed1: F=0.455308, t=68.21s, cost=4.3567e+03 → traj_a8_dda4_seed1.jld2
+  seed2: F=0.455308, t=68.30s, cost=4.3567e+03 → traj_a8_dda4_seed2.jld2
+
+a[8]=1.896e+00, dda[5]=4.642e-01:
+  seed1: F=0.591302, t=76.43s, cost=7.2583e+01 → traj_a8_dda5_seed1.jld2
+  seed2: F=0.405283, t=76.88s, cost=8.6941e+01 → traj_a8_dda5_seed2.jld2
+
+a[8]=1.896e+00, dda[6]=5.109e-01:
+  seed1: F=0.845511, t=74.79s, cost=2.0681e+01 → traj_a8_dda6_seed1.jld2
+  seed2: F=0.860133, t=87.76s, cost=1.9792e+01 → traj_a8_dda6_seed2.jld2
+
+a[8]=1.896e+00, dda[7]=5.623e-01:
+  seed1: F=0.921477, t=74.13s, cost=1.1107e+01 → traj_a8_dda7_seed1.jld2
+  seed2: F=0.918307, t=64.67s, cost=1.1233e+01 → traj_a8_dda7_seed2.jld2
+
+a[8]=1.896e+00, dda[8]=6.190e-01:
+  seed1: F=0.960504, t=80.09s, cost=5.8348e+00 → traj_a8_dda8_seed1.jld2
+  seed2: F=0.960424, t=75.38s, cost=5.8274e+00 → traj_a8_dda8_seed2.jld2
+
+a[8]=1.896e+00, dda[9]=6.813e-01:
+  seed1: F=0.983343, t=59.88s, cost=2.6081e+00 → traj_a8_dda9_seed1.jld2
+  seed2: F=0.459346, t=69.17s, cost=2.3238e+03 → traj_a8_dda9_seed2.jld2
+
+a[8]=1.896e+00, dda[10]=7.499e-01:
+  seed1: F=0.995025, t=80.35s, cost=9.6137e-01 → traj_a8_dda10_seed1.jld2
+  seed2: F=0.994990, t=76.19s, cost=9.6640e-01 → traj_a8_dda10_seed2.jld2
+
+a[8]=1.896e+00, dda[11]=8.254e-01:
+  seed1: F=0.999343, t=76.40s, cost=2.2201e-01 → traj_a8_dda11_seed1.jld2
+  seed2: F=0.000000, t=70.40s, cost=1.8571e+03 → traj_a8_dda11_seed2.jld2
+
+a[8]=1.896e+00, dda[12]=9.085e-01:
+  seed1: F=0.999994, t=74.91s, cost=5.6297e-02 → traj_a8_dda12_seed1.jld2
+  seed2: F=0.999998, t=77.70s, cost=5.2873e-02 → traj_a8_dda12_seed2.jld2
+
+a[8]=1.896e+00, dda[13]=1.000e+00:
+  seed1: F=0.999979, t=77.57s, cost=5.7874e-02 → traj_a8_dda13_seed1.jld2
+  seed2: F=0.999999, t=78.14s, cost=4.7410e-02 → traj_a8_dda13_seed2.jld2
+
+a[8]=1.896e+00, dda[14]=1.101e+00:
+  seed1: F=1.000000, t=79.71s, cost=4.7763e-02 → traj_a8_dda14_seed1.jld2
+  seed2: F=0.999996, t=76.65s, cost=4.8648e-02 → traj_a8_dda14_seed2.jld2
+
+a[8]=1.896e+00, dda[15]=1.212e+00:
+  seed1: F=1.000000, t=92.29s, cost=4.6488e-02 → traj_a8_dda15_seed1.jld2
+  seed2: F=1.000000, t=74.62s, cost=4.6296e-02 → traj_a8_dda15_seed2.jld2
+
+a[8]=1.896e+00, dda[16]=1.334e+00:
+  seed1: F=0.999994, t=100.95s, cost=4.6076e-02 → traj_a8_dda16_seed1.jld2
+  seed2: F=1.000000, t=75.00s, cost=4.5906e-02 → traj_a8_dda16_seed2.jld2
+
+a[8]=1.896e+00, dda[17]=1.468e+00:
+  seed1: F=0.999999, t=83.64s, cost=4.6545e-02 → traj_a8_dda17_seed1.jld2
+  seed2: F=0.999999, t=77.99s, cost=4.5556e-02 → traj_a8_dda17_seed2.jld2
+
+a[8]=1.896e+00, dda[18]=1.616e+00:
+  seed1: F=0.999999, t=79.51s, cost=4.6056e-02 → traj_a8_dda18_seed1.jld2
+  seed2: F=1.000000, t=77.32s, cost=4.5914e-02 → traj_a8_dda18_seed2.jld2
+
+a[8]=1.896e+00, dda[19]=1.778e+00:
+  seed1: F=0.996289, t=77.71s, cost=5.3352e-02 → traj_a8_dda19_seed1.jld2
+  seed2: F=1.000000, t=81.12s, cost=4.5639e-02 → traj_a8_dda19_seed2.jld2
+
+a[8]=1.896e+00, dda[20]=1.957e+00:
+  seed1: F=0.999885, t=74.94s, cost=8.7796e-02 → traj_a8_dda20_seed1.jld2
+  seed2: F=1.000000, t=101.36s, cost=4.6102e-02 → traj_a8_dda20_seed2.jld2
+
+a[8]=1.896e+00, dda[21]=2.154e+00:
+  seed1: F=1.000000, t=75.84s, cost=4.8261e-02 → traj_a8_dda21_seed1.jld2
+  seed2: F=0.999978, t=78.69s, cost=4.8753e-02 → traj_a8_dda21_seed2.jld2
+
+a[8]=1.896e+00, dda[22]=2.371e+00:
+  seed1: F=1.000000, t=77.35s, cost=4.6034e-02 → traj_a8_dda22_seed1.jld2
+  seed2: F=1.000000, t=78.54s, cost=4.6771e-02 → traj_a8_dda22_seed2.jld2
+
+a[8]=1.896e+00, dda[23]=2.610e+00:
+  seed1: F=1.000000, t=77.34s, cost=4.6055e-02 → traj_a8_dda23_seed1.jld2
+  seed2: F=0.999999, t=78.79s, cost=6.9931e-02 → traj_a8_dda23_seed2.jld2
+
+a[8]=1.896e+00, dda[24]=2.873e+00:
+  seed1: F=0.999996, t=87.94s, cost=5.1978e-02 → traj_a8_dda24_seed1.jld2
+  seed2: F=1.000000, t=75.57s, cost=4.6071e-02 → traj_a8_dda24_seed2.jld2
+
+a[8]=1.896e+00, dda[25]=3.162e+00:
+  seed1: F=0.999997, t=96.33s, cost=4.6351e-02 → traj_a8_dda25_seed1.jld2
+  seed2: F=0.999425, t=75.70s, cost=9.6781e-02 → traj_a8_dda25_seed2.jld2
+
+a[9]=2.448e+00, dda[1]=3.162e-01:
+  seed1: F=0.566306, t=59.42s, cost=1.9700e+03 → traj_a9_dda1_seed1.jld2
+  seed2: F=0.548592, t=77.12s, cost=1.9723e+03 → traj_a9_dda1_seed2.jld2
+
+a[9]=2.448e+00, dda[2]=3.481e-01:
+  seed1: F=0.672271, t=76.17s, cost=1.1162e+03 → traj_a9_dda2_seed1.jld2
+  seed2: F=0.454283, t=75.18s, cost=5.6110e+03 → traj_a9_dda2_seed2.jld2
+
+a[9]=2.448e+00, dda[3]=3.831e-01:
+  seed1: F=0.711810, t=77.28s, cost=4.7931e+02 → traj_a9_dda3_seed1.jld2
+  seed2: F=0.467844, t=78.71s, cost=5.5104e+02 → traj_a9_dda3_seed2.jld2
+
+a[9]=2.448e+00, dda[4]=4.217e-01:
+  seed1: F=0.748008, t=77.30s, cost=1.6422e+02 → traj_a9_dda4_seed1.jld2
+  seed2: F=0.748008, t=78.58s, cost=1.6422e+02 → traj_a9_dda4_seed2.jld2
+
+a[9]=2.448e+00, dda[5]=4.642e-01:
+  seed1: F=0.727156, t=82.10s, cost=4.6954e+01 → traj_a9_dda5_seed1.jld2
+  seed2: F=0.844021, t=76.73s, cost=6.2731e+01 → traj_a9_dda5_seed2.jld2
+
+a[9]=2.448e+00, dda[6]=5.109e-01:
+  seed1: F=0.845242, t=76.29s, cost=2.0813e+01 → traj_a9_dda6_seed1.jld2
+  seed2: F=0.864457, t=90.16s, cost=2.0340e+01 → traj_a9_dda6_seed2.jld2
+
+a[9]=2.448e+00, dda[7]=5.623e-01:
+  seed1: F=0.921489, t=73.16s, cost=1.1105e+01 → traj_a9_dda7_seed1.jld2
+  seed2: F=0.918352, t=77.65s, cost=1.1225e+01 → traj_a9_dda7_seed2.jld2
+
+a[9]=2.448e+00, dda[8]=6.190e-01:
+  seed1: F=0.960515, t=74.11s, cost=5.8335e+00 → traj_a9_dda8_seed1.jld2
+  seed2: F=0.960424, t=76.21s, cost=5.8274e+00 → traj_a9_dda8_seed2.jld2
+
+a[9]=2.448e+00, dda[9]=6.813e-01:
+  seed1: F=0.983343, t=56.85s, cost=2.6081e+00 → traj_a9_dda9_seed1.jld2
+  seed2: F=0.979378, t=78.52s, cost=3.2637e+00 → traj_a9_dda9_seed2.jld2
+
+a[9]=2.448e+00, dda[10]=7.499e-01:
+  seed1: F=0.993801, t=73.35s, cost=1.1840e+00 → traj_a9_dda10_seed1.jld2
+  seed2: F=0.993799, t=76.27s, cost=1.1840e+00 → traj_a9_dda10_seed2.jld2
+
+a[9]=2.448e+00, dda[11]=8.254e-01:
+  seed1: F=0.999501, t=61.85s, cost=1.9677e-01 → traj_a9_dda11_seed1.jld2
+  seed2: F=0.999354, t=74.42s, cost=2.3104e-01 → traj_a9_dda11_seed2.jld2
+
+a[9]=2.448e+00, dda[12]=9.085e-01:
+  seed1: F=0.999428, t=75.99s, cost=3.1707e-01 → traj_a9_dda12_seed1.jld2
+  seed2: F=0.999997, t=77.97s, cost=5.2323e-02 → traj_a9_dda12_seed2.jld2
+
+a[9]=2.448e+00, dda[13]=1.000e+00:
+  seed1: F=0.999998, t=77.69s, cost=5.0726e-02 → traj_a9_dda13_seed1.jld2
+  seed2: F=1.000000, t=85.05s, cost=4.7598e-02 → traj_a9_dda13_seed2.jld2
+
+a[9]=2.448e+00, dda[14]=1.101e+00:
+  seed1: F=1.000000, t=75.94s, cost=5.5825e-02 → traj_a9_dda14_seed1.jld2
+  seed2: F=1.000000, t=78.33s, cost=4.6547e-02 → traj_a9_dda14_seed2.jld2
+
+a[9]=2.448e+00, dda[15]=1.212e+00:
+  seed1: F=1.000000, t=76.64s, cost=5.2804e-02 → traj_a9_dda15_seed1.jld2
+  seed2: F=1.000000, t=77.11s, cost=5.2403e-02 → traj_a9_dda15_seed2.jld2
+
+a[9]=2.448e+00, dda[16]=1.334e+00:
+  seed1: F=1.000000, t=76.85s, cost=4.6154e-02 → traj_a9_dda16_seed1.jld2
+  seed2: F=1.000000, t=76.24s, cost=4.5886e-02 → traj_a9_dda16_seed2.jld2
+
+a[9]=2.448e+00, dda[17]=1.468e+00:
+  seed1: F=0.999999, t=83.30s, cost=5.9270e-02 → traj_a9_dda17_seed1.jld2
+  seed2: F=1.000000, t=76.04s, cost=4.5789e-02 → traj_a9_dda17_seed2.jld2
+
+a[9]=2.448e+00, dda[18]=1.616e+00:
+  seed1: F=0.999885, t=78.97s, cost=7.0019e-02 → traj_a9_dda18_seed1.jld2
+  seed2: F=0.999999, t=75.38s, cost=5.4746e-02 → traj_a9_dda18_seed2.jld2
+
+a[9]=2.448e+00, dda[19]=1.778e+00:
+  seed1: F=0.999987, t=78.17s, cost=5.0454e-02 → traj_a9_dda19_seed1.jld2
+  seed2: F=1.000000, t=80.88s, cost=4.9366e-02 → traj_a9_dda19_seed2.jld2
+
+a[9]=2.448e+00, dda[20]=1.957e+00:
+  seed1: F=0.999999, t=75.79s, cost=5.0568e-02 → traj_a9_dda20_seed1.jld2
+  seed2: F=0.999999, t=87.54s, cost=5.3545e-02 → traj_a9_dda20_seed2.jld2
+
+a[9]=2.448e+00, dda[21]=2.154e+00:
+  seed1: F=0.999998, t=75.90s, cost=5.9571e-02 → traj_a9_dda21_seed1.jld2
+  seed2: F=1.000000, t=78.86s, cost=4.9538e-02 → traj_a9_dda21_seed2.jld2
+
+a[9]=2.448e+00, dda[22]=2.371e+00:
+  seed1: F=0.999999, t=77.00s, cost=5.1794e-02 → traj_a9_dda22_seed1.jld2
+  seed2: F=0.999999, t=78.13s, cost=5.4940e-02 → traj_a9_dda22_seed2.jld2
+
+a[9]=2.448e+00, dda[23]=2.610e+00:
+  seed1: F=1.000000, t=78.39s, cost=5.4262e-02 → traj_a9_dda23_seed1.jld2
+  seed2: F=0.999996, t=77.13s, cost=6.3880e-02 → traj_a9_dda23_seed2.jld2
+
+a[9]=2.448e+00, dda[24]=2.873e+00:
+  seed1: F=1.000000, t=97.49s, cost=5.5661e-02 → traj_a9_dda24_seed1.jld2
+  seed2: F=1.000000, t=76.11s, cost=4.5666e-02 → traj_a9_dda24_seed2.jld2
+
+a[9]=2.448e+00, dda[25]=3.162e+00:
+  seed1: F=1.000000, t=78.20s, cost=5.2158e-02 → traj_a9_dda25_seed1.jld2
+  seed2: F=1.000000, t=77.00s, cost=4.6454e-02 → traj_a9_dda25_seed2.jld2
+
+a[10]=3.162e+00, dda[1]=3.162e-01:
+  seed1: F=0.500554, t=79.98s, cost=1.9764e+03 → traj_a10_dda1_seed1.jld2
+  seed2: F=0.548578, t=82.54s, cost=1.9723e+03 → traj_a10_dda1_seed2.jld2
+
+a[10]=3.162e+00, dda[2]=3.481e-01:
+  seed1: F=0.609017, t=77.03s, cost=1.1219e+03 → traj_a10_dda2_seed1.jld2
+  seed2: F=0.399552, t=60.28s, cost=1.1432e+03 → traj_a10_dda2_seed2.jld2
+
+a[10]=3.162e+00, dda[3]=3.831e-01:
+  seed1: F=0.711817, t=77.08s, cost=4.7929e+02 → traj_a10_dda3_seed1.jld2
+  seed2: F=0.467852, t=78.12s, cost=5.5105e+02 → traj_a10_dda3_seed2.jld2
+
+a[10]=3.162e+00, dda[4]=4.217e-01:
+  seed1: F=0.748008, t=80.40s, cost=1.6422e+02 → traj_a10_dda4_seed1.jld2
+  seed2: F=0.748008, t=75.12s, cost=1.6422e+02 → traj_a10_dda4_seed2.jld2
+
+a[10]=3.162e+00, dda[5]=4.642e-01:
+  seed1: F=0.727156, t=64.43s, cost=4.6954e+01 → traj_a10_dda5_seed1.jld2
+  seed2: F=0.757020, t=79.73s, cost=6.5105e+01 → traj_a10_dda5_seed2.jld2
+
+a[10]=3.162e+00, dda[6]=5.109e-01:
+  seed1: F=0.843635, t=76.80s, cost=2.1084e+01 → traj_a10_dda6_seed1.jld2
+  seed2: F=0.864456, t=75.97s, cost=2.0340e+01 → traj_a10_dda6_seed2.jld2
+
+a[10]=3.162e+00, dda[7]=5.623e-01:
+  seed1: F=0.930027, t=76.82s, cost=1.0611e+01 → traj_a10_dda7_seed1.jld2
+  seed2: F=0.918307, t=70.62s, cost=1.1233e+01 → traj_a10_dda7_seed2.jld2
+
+a[10]=3.162e+00, dda[8]=6.190e-01:
+  seed1: F=0.958970, t=77.07s, cost=5.9107e+00 → traj_a10_dda8_seed1.jld2
+  seed2: F=0.959899, t=76.06s, cost=5.8727e+00 → traj_a10_dda8_seed2.jld2
+
+a[10]=3.162e+00, dda[9]=6.813e-01:
+  seed1: F=0.920371, t=76.69s, cost=2.0766e+01 → traj_a10_dda9_seed1.jld2
+  seed2: F=0.983398, t=82.95s, cost=2.5986e+00 → traj_a10_dda9_seed2.jld2
+
+a[10]=3.162e+00, dda[10]=7.499e-01:
+  seed1: F=0.979639, t=73.89s, cost=4.9486e+00 → traj_a10_dda10_seed1.jld2
+  seed2: F=0.994998, t=77.80s, cost=9.5393e-01 → traj_a10_dda10_seed2.jld2
+
+a[10]=3.162e+00, dda[11]=8.254e-01:
+  seed1: F=0.996227, t=75.54s, cost=1.2552e+00 → traj_a10_dda11_seed1.jld2
+  seed2: F=0.999287, t=78.44s, cost=2.3112e-01 → traj_a10_dda11_seed2.jld2
+
+a[10]=3.162e+00, dda[12]=9.085e-01:
+  seed1: F=0.999428, t=76.85s, cost=3.1707e-01 → traj_a10_dda12_seed1.jld2
+  seed2: F=0.999997, t=76.40s, cost=5.2602e-02 → traj_a10_dda12_seed2.jld2
+
+a[10]=3.162e+00, dda[13]=1.000e+00:
+  seed1: F=0.999999, t=97.38s, cost=5.4005e-02 → traj_a10_dda13_seed1.jld2
+  seed2: F=0.999900, t=75.98s, cost=4.8234e-02 → traj_a10_dda13_seed2.jld2
+
+a[10]=3.162e+00, dda[14]=1.101e+00:
+  seed1: F=0.999999, t=78.91s, cost=5.0923e-02 → traj_a10_dda14_seed1.jld2
+  seed2: F=0.999995, t=78.05s, cost=4.6887e-02 → traj_a10_dda14_seed2.jld2
+
+a[10]=3.162e+00, dda[15]=1.212e+00:
+  seed1: F=0.999954, t=78.54s, cost=5.4220e-02 → traj_a10_dda15_seed1.jld2
+  seed2: F=1.000000, t=79.26s, cost=4.6521e-02 → traj_a10_dda15_seed2.jld2
+
+a[10]=3.162e+00, dda[16]=1.334e+00:
+  seed1: F=1.000000, t=75.95s, cost=4.9726e-02 → traj_a10_dda16_seed1.jld2
+  seed2: F=1.000000, t=98.82s, cost=4.5714e-02 → traj_a10_dda16_seed2.jld2
+
+a[10]=3.162e+00, dda[17]=1.468e+00:
+  seed1: F=1.000000, t=75.56s, cost=5.2280e-02 → traj_a10_dda17_seed1.jld2
+  seed2: F=1.000000, t=78.53s, cost=4.5633e-02 → traj_a10_dda17_seed2.jld2
+
+a[10]=3.162e+00, dda[18]=1.616e+00:
+  seed1: F=0.999986, t=76.01s, cost=6.5590e-02 → traj_a10_dda18_seed1.jld2
+  seed2: F=1.000000, t=80.76s, cost=4.7323e-02 → traj_a10_dda18_seed2.jld2
+
+a[10]=3.162e+00, dda[19]=1.778e+00:
+  seed1: F=1.000000, t=78.51s, cost=4.9380e-02 → traj_a10_dda19_seed1.jld2
+  seed2: F=1.000000, t=77.75s, cost=5.7604e-02 → traj_a10_dda19_seed2.jld2
+
+a[10]=3.162e+00, dda[20]=1.957e+00:
+  seed1: F=1.000000, t=92.28s, cost=4.9346e-02 → traj_a10_dda20_seed1.jld2
+  seed2: F=1.000000, t=75.63s, cost=5.2766e-02 → traj_a10_dda20_seed2.jld2
+
+a[10]=3.162e+00, dda[21]=2.154e+00:
+  seed1: F=1.000000, t=78.67s, cost=4.9190e-02 → traj_a10_dda21_seed1.jld2
+  seed2: F=0.999998, t=75.78s, cost=5.5165e-02 → traj_a10_dda21_seed2.jld2
+
+a[10]=3.162e+00, dda[22]=2.371e+00:
+  seed1: F=0.999999, t=79.79s, cost=5.6259e-02 → traj_a10_dda22_seed1.jld2
+  seed2: F=1.000000, t=79.10s, cost=4.9077e-02 → traj_a10_dda22_seed2.jld2
+
+a[10]=3.162e+00, dda[23]=2.610e+00:
+  seed1: F=1.000000, t=76.31s, cost=5.2170e-02 → traj_a10_dda23_seed1.jld2
+  seed2: F=1.000000, t=111.26s, cost=4.6076e-02 → traj_a10_dda23_seed2.jld2
+
+a[10]=3.162e+00, dda[24]=2.873e+00:
+  seed1: F=0.999999, t=85.93s, cost=4.9579e-02 → traj_a10_dda24_seed1.jld2
+  seed2: F=1.000000, t=102.32s, cost=1.3039e-01 → traj_a10_dda24_seed2.jld2
+
+a[10]=3.162e+00, dda[25]=3.162e+00:
+  seed1: F=0.998883, t=86.78s, cost=5.2387e-02 → traj_a10_dda25_seed1.jld2
+  seed2: F=0.999999, t=90.75s, cost=4.6329e-02 → traj_a10_dda25_seed2.jld2
+

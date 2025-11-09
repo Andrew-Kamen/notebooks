@@ -1,0 +1,25 @@
+Multi-Seed Trajectory Analysis Summary
+============================================================
+
+Parameter Ranges:
+  a_bounds: [0.1, 0.15199110829529336, 0.23101297000831597, 0.35111917342151316, 0.533669923120631, 0.8111308307896871, 1.2328467394420661, 1.8738174228603839, 2.8480358684358014, 4.328761281083058, 6.579332246575681, 10.0]
+  dda_bounds: [0.1, 0.15199110829529336, 0.23101297000831597, 0.35111917342151316, 0.533669923120631, 0.8111308307896871, 1.2328467394420661, 1.8738174228603839, 2.8480358684358014, 4.328761281083058, 6.579332246575681, 10.0]
+  Number of seeds: 2
+  Seed values: [42, 123]
+
+Fidelity Statistics:
+  Mean of means: 0.974897
+  Mean of stds: 0.000300
+  Max std: 0.015421
+  Overall best: 1.000000
+  Overall worst: 0.651179
+
+Space Curve Robustness:
+  Mean across all: 0.6757
+  Std across params: 0.2885
+  Avg std across seeds: 0.0141
+
+Width Robustness:
+  Mean across all: 0.0798
+  Std across params: 0.0652
+  Avg std across seeds: 0.0081

@@ -1,0 +1,22 @@
+Parameter Sweep Results
+============================================================
+Timestamp: 20250930_085535
+
+Configuration:
+  Gate: Hadamard
+  Time horizon (T): 20
+  Time step (Δt): 0.2
+  Number of seeds: 2
+  Seed values: [42, 123]
+
+Parameter Grid:
+  a_bounds: 10 points from 0.31622776601683794 to 3.1622776601683795
+  dda_bounds: 25 points from 0.31622776601683794 to 3.1622776601683795
+  Total optimization runs: 500
+
+Results Summary:
+  Mean fidelity: 0.445990
+  Mean std: 0.109322
+  Best fidelity: 1.000000
+  Worst fidelity: 0.000000
+  Mean convergence time: 45.97 seconds
