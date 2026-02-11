@@ -59,7 +59,7 @@ function scatter_with_line!(ax, x, y; color, label)
 end
 
 # Problem parameters
-for seed in 1:1
+for seed in 1:25
     println("============|Starting random seed $seed|============")
     var_avg_vec = [] # ZZ, Z1, Z2 average
     def_avg_vec = []
