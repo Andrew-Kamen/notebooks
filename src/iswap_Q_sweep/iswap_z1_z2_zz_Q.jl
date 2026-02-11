@@ -82,7 +82,7 @@ for seed in 1:1
     uni_F_vec = []
 
     ä_vals = exp10.(range(-2, stop = 3, length = 10))
-    Q_vals = exp10.(range(0.0, stop = 3, length = 2)) # 2 points for initial check
+    Q_vals = exp10.(range(0.0, stop = 10, length = 8))
 
     traj_uni = Vector{Any}(undef, length(Q_vals))
     traj_def = Vector{Any}(undef, length(Q_vals))
@@ -93,7 +93,7 @@ for seed in 1:1
         ä = ä_vals[end]
         T = 50
         Δt = 0.2
-        num_iter = 350
+        num_iter = 1000
         iSWAP = exp(1.0im * π / 4 * (PAULIS.X ⊗ PAULIS.X + PAULIS.Y ⊗ PAULIS.Y))
         U_goal = iSWAP
         a_bound = 5.0
