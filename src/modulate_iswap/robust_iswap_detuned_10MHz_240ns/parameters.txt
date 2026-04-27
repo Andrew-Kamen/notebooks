@@ -1,0 +1,14 @@
+g_eff = 0.06283185307179587 rad/ns (10.0 MHz)
+δ₁₂ = 0.37699111843077515 rad/ns (60.0 MHz)
+Δ_mw1 = -0.0 rad/ns (-0.0 MHz)
+Δ_mw2 = 0.0 rad/ns (0.0 MHz)
+a_bound = 0.06283185307179587 rad/ns (10.0 MHz)
+σ_rise = 1.0 ns
+buffer_duration = 4.0 ns
+A_rise = 0.07905732558303409 rad
+A_fall = 0.07905732558303408 rad
+θ_goal = 0.62728351223138 rad
+T_flat = 230.0 ns
+T_total = 238.0 ns
+F_threshold = 0.9999
+Virtual Z on q2 = 89.72388618652448 rad
