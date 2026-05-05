@@ -14,13 +14,34 @@
 # =============================================================================
 
 import Pkg
-Pkg.activate(".")
+Pkg.activate(@__DIR__)
+
 piccolo_path       = joinpath(@__DIR__, "..", "..", "..", "Piccolo.jl")
 directtrajopt_path = joinpath(@__DIR__, "..", "..", "..", "DirectTrajOpt.jl")
-Pkg.develop(path = piccolo_path)
-Pkg.develop(path = directtrajopt_path)
-Pkg.add(["CairoMakie", "Ipopt", "JLD2", "Statistics"])
+
+# Defensively wipe stale Manifest.toml on first run if it points at paths
+# from a different machine (Pkg.develop below will rebuild it from scratch).
+let mfile = joinpath(@__DIR__, "Manifest.toml")
+    if isfile(mfile)
+        contents = read(mfile, String)
+        if occursin("/Mobile Documents/", contents) && !occursin(homedir(), contents)
+            @info "Removing stale Manifest.toml (paths from a different machine)"
+            rm(mfile)
+        end
+    end
+end
+
+# Develop both local packages in a SINGLE Pkg call. Calling Pkg.develop
+# twice (once per package) triggers two separate resolves; the second one
+# can downgrade packages and invalidate artifacts the first compiled,
+# producing "Package X required but does not seem to be installed" errors.
+Pkg.develop([
+    Pkg.PackageSpec(path = piccolo_path),
+    Pkg.PackageSpec(path = directtrajopt_path),
+])
+
 Pkg.instantiate()
+Pkg.precompile()
 
 using Piccolo
 using LinearAlgebra
