@@ -1,0 +1,10 @@
+N_knots   = 20
+seed      = 44
+runtime_s = 3551.9135
+F_flat    = 0.9856906772
+F_full    = 0.9856906772
+var_obj_ZI = 0.157747
+var_obj_IZ = 0.34336
+var_obj_ZZ = 0.131096
+var_obj_sum = 0.632203
+converged = false
