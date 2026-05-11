@@ -1,0 +1,7 @@
+g_eff = 0.012566370614359173 rad/ns (2.0 MHz)
+δ₁₂ = 0.37699111843077515 rad/ns (60.0 MHz)
+Δ_mw1 = -0.0 rad/ns (-0.0 MHz)
+Δ_mw2 = 0.0 rad/ns (0.0 MHz)
+a_bound = 0.06283185307179587 rad/ns (10.0 MHz)
+σ_rise = 1.25 ns
+buffer_duration = 5.0 ns

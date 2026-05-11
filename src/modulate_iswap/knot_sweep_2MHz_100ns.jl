@@ -14,19 +14,12 @@
 # =============================================================================
 
 import Pkg
-Pkg.activate(@__DIR__)
+Pkg.activate(".")
 piccolo_path       = joinpath(@__DIR__, "..", "..", "..", "Piccolo.jl")
 directtrajopt_path = joinpath(@__DIR__, "..", "..", "..", "DirectTrajOpt.jl")
-# Develop both local packages in a SINGLE Pkg call. Calling Pkg.develop
-# twice (once per package) triggers two separate resolves; the second one
-# can downgrade packages and invalidate artifacts the first compiled,
-# producing "Package X required but does not seem to be installed" errors.
-# A single combined call also overwrites both stale dev paths in the same
-# resolve, which is what makes this work cleanly across machines.
-Pkg.develop([
-    Pkg.PackageSpec(path = piccolo_path),
-    Pkg.PackageSpec(path = directtrajopt_path),
-])
+Pkg.develop(path = piccolo_path)
+Pkg.develop(path = directtrajopt_path)
+Pkg.add(["CairoMakie", "Ipopt", "JLD2", "Statistics"])
 Pkg.instantiate()
 
 using Piccolo
@@ -40,7 +33,7 @@ using Statistics
 # =============================================================================
 # Sweep hyperparameters
 # =============================================================================
-const N_KNOTS_LIST = [4, 8, 12, 16, 20, 24]
+const N_KNOTS_LIST = [4, 8, 12, 16, 20, 24, 32]
 const N_SEEDS      = 5
 const SEED_BASE    = 42
 
