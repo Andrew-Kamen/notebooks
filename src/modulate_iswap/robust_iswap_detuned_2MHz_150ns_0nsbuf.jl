@@ -40,11 +40,17 @@
 
 import Pkg
 Pkg.activate(@__DIR__)
-piccolo_path = joinpath(@__DIR__, "..", "..", "..", "Piccolo.jl")
-Pkg.develop(path=piccolo_path)
+piccolo_path       = joinpath(@__DIR__, "..", "..", "..", "Piccolo.jl")
 directtrajopt_path = joinpath(@__DIR__, "..", "..", "..", "DirectTrajOpt.jl")
-Pkg.develop(path=directtrajopt_path)
-Pkg.add(["CairoMakie", "Ipopt", "FFTW"])
+# Develop both local packages in a SINGLE Pkg call. Separate Pkg.develop calls
+# trigger separate resolves; the second one inspects the (stale, cross-machine)
+# path of the first dev package in the manifest and fails. Combined call
+# overwrites both paths in one resolve.
+Pkg.develop([
+    Pkg.PackageSpec(path = piccolo_path),
+    Pkg.PackageSpec(path = directtrajopt_path),
+])
+Pkg.add(["CairoMakie", "Ipopt", "FFTW", "JLD2"])
 Pkg.instantiate()
 
 using Revise
