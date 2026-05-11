@@ -53,7 +53,6 @@ Pkg.develop([
 Pkg.add(["CairoMakie", "Ipopt", "FFTW", "JLD2"])
 Pkg.instantiate()
 
-using Revise
 using Piccolo
 using LinearAlgebra
 using Random
