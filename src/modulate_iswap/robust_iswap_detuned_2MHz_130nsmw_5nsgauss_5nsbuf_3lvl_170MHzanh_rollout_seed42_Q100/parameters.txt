@@ -1,0 +1,21 @@
+# 3-level Duffing rollout-form optimization, 5nsbuf layout
+template = VariationalRolloutProblem
+n_levels_per_qubit = 3
+η_anh = -1.0681415022205298 rad/ns (-170.0 MHz)
+g_eff = 0.012566370614359173 rad/ns (2.0 MHz)
+δ₁₂   = 0.37699111843077515 rad/ns
+a_bound = 0.06283185307179587 rad/ns
+σ_rise = 1.25 ns
+buffer_duration = 5.0 ns
+buffer_flat_duration = 5.0 ns
+T_total_gate_ns = 150.0 ns
+T_total_ns (mw region) = 130.0 ns
+θ_goal = 0.6202372208012827 rad
+Q = 0.0, Q_r = 100.0, R = 1e-3
+F_threshold = 0.9999
+N_knots = 20, num_iter = 1000, seed = 42
+Variational errors: n̂_1, n̂_2, n̂_1·n̂_2
+Computational subspace indices: [1, 2, 4, 5]
+F_flat (subspace) = 0.9551854163866051
+Leakage           = 0.03436352628906225
+F_full (vs iSWAP, subspace) = 0.9113510274939712

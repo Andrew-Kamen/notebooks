@@ -137,7 +137,7 @@ const V_fall = exp(-im * A_post * (XX + YY))
 
 const g_eff_MHz = round(Int, g_eff/(2π)*1e3)
 const η_MHz     = round(Int, abs(η_anh)/(2π)*1e3)
-const run_tag   = "$(g_eff_MHz)MHz_$(round(Int, T_total_ns))nsmw_5nsgauss_5nsbuf_3lvl_$(η_MHz)MHzanh_rollout_seed$(SEED)"
+const run_tag   = "$(g_eff_MHz)MHz_$(round(Int, T_total_ns))nsmw_5nsgauss_5nsbuf_3lvl_$(η_MHz)MHzanh_rollout_seed$(SEED)_Q100"
 println("θ_goal = ", round(θ_goal, digits=4), " rad")
 println("run_tag = $run_tag")
 
@@ -185,7 +185,7 @@ pulse    = CubicSplinePulse(controls, du_init, times)
 
 qcp = VariationalRolloutProblem(
     varsys, pulse, U_goal, N_knots;
-    Q                     = 0.0,
+    Q                     = 100.0,
     Q_r                   = Q_r,
     R                     = 1e-3,
     du_bound              = Inf,
@@ -201,9 +201,9 @@ qcp = VariationalRolloutProblem(
     ),
 )
 
-push!(qcp.prob.constraints,
-    FinalUnitaryFidelityConstraint(U_goal, :Ũ⃗, F_threshold, get_trajectory(qcp))
-)
+# push!(qcp.prob.constraints,
+#     FinalUnitaryFidelityConstraint(U_goal, :Ũ⃗, F_threshold, get_trajectory(qcp))
+# )
 
 # Diagnostics: confirm which speed caches in VariationalRolloutObjective fired.
 # Both should be populated for this Hamiltonian: H_vars are constant matrices

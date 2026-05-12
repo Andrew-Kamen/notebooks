@@ -1,0 +1,20 @@
+# 2-qubit (Pauli) variational-rollout iSWAP optimization, 5nsbuf layout
+template = VariationalRolloutProblem
+n_levels_per_qubit = 2
+g_eff = 0.012566370614359173 rad/ns (2.0 MHz)
+δ₁₂   = 0.37699111843077515 rad/ns
+Δ_mw1 = -0.0 rad/ns; Δ_mw2 = 0.0 rad/ns
+a_bound = 0.06283185307179587 rad/ns
+σ_rise = 1.25 ns
+buffer_duration = 5.0 ns
+buffer_flat_duration = 5.0 ns
+T_total_gate_ns = 150.0 ns
+T_total_ns (mw region) = 130.0 ns
+θ_goal = 0.6202372208012827 rad
+Q = 0.0, Q_r = 100.0, R = 1e-3
+F_threshold = 0.9999
+N_knots = 24, num_iter = 1000, seed = 42
+Variational errors: ZI, IZ, ZZ
+Ipopt: constr_viol_tol = 1e-8, tol = 1e-8, acceptable_tol = 1e-8
+F_flat = 0.9999020420558539
+F_full (vs iSWAP) = 0.9999020420558539
