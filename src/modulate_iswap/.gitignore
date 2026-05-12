@@ -1,12 +1,6 @@
-# Ipopt run logs (per-run, not source)
+# Ipopt run logs (per-run, not source — re-generated on each solve)
 ipopt_*.log
 
 # Profile binaries (machine-specific, large)
 *.pb.gz
 profile*.out.log
-
-# Per-run output directories (controls, fidelity curves, figs)
-robust_iswap_detuned_*/
-
-# Knot-sweep output directories
-knot_sweep_*/
