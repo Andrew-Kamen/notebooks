@@ -1,21 +1,25 @@
 # =============================================================================
-# robust_iswap_detuned_2MHz_150ns_5nsbuf_3level_rollout.jl
+# robust_iswap_detuned_2MHz_150ns_5nsbuf_3level.jl
 #
-# Same problem as robust_iswap_detuned_2MHz_150ns_5nsbuf_3level.jl
-# (3-level Duffing, anharmonicity η = -2π·0.170, n̂_1/n̂_2/n̂_1·n̂_2 robustness,
-# 5 ns Gauss + 5 ns buf + 130 ns MW + 5 ns buf + 5 ns Gauss pulse layout)
-# but uses VariationalRolloutProblem (indirect / forward-rollout formulation)
-# instead of VariationalSplinePulseProblem (direct collocation).
+# 3-level (qutrit) per-qubit optimization. Same pulse layout as the 2-level
+# 5nsbuf script (5 ns Gauss + 5 ns buf + 130 ns MW + 5 ns buf + 5 ns Gauss),
+# same optimization knobs (Q, Q_r, R, F_threshold, N_knots, num_iter, seed),
+# but the Hilbert space is 3⊗3 = 9 per gate-frame state. Transmon-style
+# anharmonicity η = −2π·0.170 rad/ns ≈ −170 MHz is in the drift.
 #
-# WHY: the direct template carries the augmented [Ũ⃗; ∂Ũ⃗₁; ∂Ũ⃗₂; ∂Ũ⃗₃] state as
-# an NLP decision variable, giving per-knot Jacobian cost O((iso_dim·(1+n_vars))³)
-# — for n_vars=3 and iso_dim=162 (3-level, 2 qubits) that's a 648³ matrix-exp
-# per knot transition. The rollout version drops :var_Ũ⃗ from the NLP and
-# computes ‖∂Ũ⃗(T)‖² by forward-integrating the variational ODE inside the
-# objective. Gradient via ForwardDiff through that rollout (consistent with
-# how every other Piccolo integrator computes its Jacobian).
+# WHY: when the 2-level-optimized pulse is simulated in 3-level Duffing, the
+# microwaves drive significant |1⟩→|2⟩ leakage (≈ 6%) — see the
+# duffing_3level_verify_5nsbuf.ipynb output. A 3-level optimization knows
+# about |2⟩ and can find DRAG-style cancellations to suppress leakage while
+# preserving the variational Z-robustness property.
 #
-# Expected speedup at 3-level: 5-20× per Ipopt iteration.
+# Variational error directions: { n̂_1, n̂_2, n̂_1·n̂_2 }
+#   — physical for transmon dephasing (flux noise → δω·n̂).
+#   — on the qubit subspace, n̂_ℓ = (I − Z_ℓ)/2, so robustness against ε·n̂
+#     is equivalent to robustness against −(ε/2)·Z. ε scale ≠ 2-level ε scale.
+#
+# COST: state dim 9 instead of 4 → Jacobian/integrator scale as state_dim²,
+# so ~5× slower than 2-level. Expect ~hour-scale optimization at num_iter = 1000.
 # =============================================================================
 
 import Pkg
@@ -69,7 +73,7 @@ const In = kron(I3, n3)
 const nn = nI * In
 
 # =============================================================================
-# Physical parameters (identical to the direct 3-level script)
+# Physical parameters (identical to the 2-level 5nsbuf script)
 # =============================================================================
 const g_eff = 2π * 0.002       # 2 MHz coupling
 const δ₁₂   = 2π * 0.06         # 60 MHz idle detuning
@@ -79,32 +83,33 @@ const a_bound      = 2π * 0.01
 const drive_bounds = fill(a_bound, 4)
 
 const σ_rise              = 1.25
-const buffer_flat_duration = 5.0
-const buffer_duration     = 4 * σ_rise
+const buffer_flat_duration = 5.0                 # 5 ns flat buffer (matches _5nsbuf)
+const buffer_duration     = 4 * σ_rise           # 5 ns Gaussian edge
 
-const η_anh = -2π * 0.170                        # -170 MHz (rad/ns)
+# Anharmonicity — only present in the 3-level model
+const η_anh = -2π * 0.170                        # -170 MHz (rad/ns), transmon convention
+
+# Anharmonicity Hamiltonian: (η/2) · Σ_ℓ a_ℓ†a_ℓ†a_ℓa_ℓ = (η/2)·Σ n̂_ℓ(n̂_ℓ - 1)
 const H_anh = (η_anh / 2) * (nI * (nI - I9) + In * (In - I9))
 
 # =============================================================================
-# Optimization knobs (match direct 3-level)
+# Optimization knobs (match _5nsbuf)
 # =============================================================================
 const F_threshold     = 0.9999
 const Q_r             = 1e2
 const T_total_gate_ns = 150.0
-const T_total_ns      = T_total_gate_ns - 2 * 4 * σ_rise - 2 * buffer_flat_duration
+const T_total_ns      = T_total_gate_ns - 2 * 4 * σ_rise - 2 * buffer_flat_duration   # 130 ns
 @assert T_total_ns > 0
 
 const n_samples = 300
-const N_knots   = 20
+const N_knots   = 8
 const num_iter  = 1000
-const SEED      = 42
 
-println("3-level Duffing rollout optimization. Hilbert dim = $(n_lvl^2). η = $(round(η_anh/(2π)*1e3, digits=1)) MHz.")
+println("3-level Duffing optimization. Hilbert dim = $(n_lvl^2). η = $(round(η_anh/(2π)*1e3, digits=1)) MHz.")
 println("σ_rise = $σ_rise ns; buffer = $buffer_flat_duration ns; mw region = $T_total_ns ns; total = $T_total_gate_ns ns")
-println("seed = $SEED")
 
 # =============================================================================
-# Gaussian edges + V_rise / V_fall + U_goal
+# Gaussian edges + V_rise / V_fall + U_goal (EmbeddedOperator in 9-dim)
 # =============================================================================
 const dt_fine = 0.01
 let
@@ -118,6 +123,7 @@ end
 const θ_goal = π/4 - A_pre - A_post
 @assert θ_goal > 0
 
+# 4×4 target in qubit basis, then embed into the 9-dim space
 const U_iswap_4x4 = let
     σx = ComplexF64[0.0 1.0; 1.0 0.0]
     σy = ComplexF64[0.0 -im; im 0.0]
@@ -128,16 +134,22 @@ const U_goal_4x4 = let
     σy = ComplexF64[0.0 -im; im 0.0]
     exp(-im * θ_goal * (kron(σx, σx) + kron(σy, σy)))
 end
+# In the 3⊗3 basis ordering |i₁i₂⟩ → i = i₁·3 + i₂ + 1, the computational
+# subspace (i₁, i₂ ∈ {0,1}) corresponds to indices [1, 2, 4, 5].
 const subspace_indices = [1, 2, 4, 5]
 const U_goal  = EmbeddedOperator(U_goal_4x4,  subspace_indices, [n_lvl, n_lvl])
 const U_iswap = EmbeddedOperator(U_iswap_4x4, subspace_indices, [n_lvl, n_lvl])
 
+# V_rise / V_fall (closed-form, NEGLECTS anharmonicity-induced |11⟩↔|20⟩,|02⟩
+# mixing during the edges/buffers. Leading error ~(g·A/η)² ≈ 10⁻⁴ — acceptable
+# for V_rise/V_fall pre-/post-rotations. The optimizer's region is integrated
+# numerically with the full Hamiltonian including anharmonicity.)
 const V_rise = exp(-im * A_pre  * (XX + YY))
 const V_fall = exp(-im * A_post * (XX + YY))
 
 const g_eff_MHz = round(Int, g_eff/(2π)*1e3)
 const η_MHz     = round(Int, abs(η_anh)/(2π)*1e3)
-const run_tag   = "$(g_eff_MHz)MHz_$(round(Int, T_total_ns))nsmw_5nsgauss_5nsbuf_3lvl_$(η_MHz)MHzanh_rollout_seed$(SEED)"
+const run_tag   = "$(g_eff_MHz)MHz_$(round(Int, T_total_ns))nsmw_5nsgauss_5nsbuf_3lvl_$(η_MHz)MHzanh"
 println("θ_goal = ", round(θ_goal, digits=4), " rad")
 println("run_tag = $run_tag")
 
@@ -146,7 +158,7 @@ println("run_tag = $run_tag")
 # =============================================================================
 function H_gate_frame(u, t)
     uX1, uY1, uX2, uY2 = u
-    H = g_eff * (XX + YY) + H_anh
+    H = g_eff * (XX + YY) + H_anh                  # drift + anharmonicity
 
     c1 = cos(Δ_mw1 * t); s1 = sin(Δ_mw1 * t)
     H += uX1 * (XI * c1 + YI * s1)
@@ -159,6 +171,7 @@ function H_gate_frame(u, t)
     return H
 end
 
+# Variational error directions — physical transmon dephasing (n̂-based)
 const H_vars = [
     (u, t) -> nI,
     (u, t) -> In,
@@ -172,18 +185,18 @@ const varsys = VariationalQuantumSystem(
 println("varsys.levels = $(varsys.levels) (expected $(n_lvl^2))")
 
 # =============================================================================
-# Build problem (VariationalRolloutProblem — indirect/rollout formulation)
+# Build problem
 # =============================================================================
 T_f = T_total_ns
 Δt  = T_f / N_knots
 
-Random.seed!(SEED)
+Random.seed!(42)
 controls = 2 .* a_bound .* rand(4, n_samples) .- a_bound
 times    = collect(LinRange(0.0, T_f, n_samples))
 du_init  = zeros(4, n_samples)
 pulse    = CubicSplinePulse(controls, du_init, times)
 
-qcp = VariationalRolloutProblem(
+qcp = VariationalSplinePulseProblem(
     varsys, pulse, U_goal, N_knots;
     Q                     = 0.0,
     Q_r                   = Q_r,
@@ -205,33 +218,11 @@ push!(qcp.prob.constraints,
     FinalUnitaryFidelityConstraint(U_goal, :Ũ⃗, F_threshold, get_trajectory(qcp))
 )
 
-# Diagnostics: confirm which speed caches in VariationalRolloutObjective fired.
-# Both should be populated for this Hamiltonian: H_vars are constant matrices
-# (nI, In, nn) and H_gate_frame is linear in u with Δ_mw=0 making it effectively
-# time-independent. If either is `nothing`, the optimization fell back to the
-# slower per-RHS code path for that piece.
-let rollout_obj = nothing
-    for sub in qcp.prob.objective.objectives
-        if sub isa VariationalRolloutObjective
-            rollout_obj = sub
-            break
-        end
-    end
-    if !isnothing(rollout_obj)
-        println("VariationalRolloutObjective caches:")
-        println("  cached_g_vars   : ", isnothing(rollout_obj.cached_g_vars)
-            ? "FALLBACK (per-call)" : "ACTIVE ($(length(rollout_obj.cached_g_vars)) directions cached)")
-        println("  cached_g_linear : ", isnothing(rollout_obj.cached_g_linear)
-            ? "FALLBACK (per-call)" : "ACTIVE (drift + $(length(rollout_obj.cached_g_linear[2])) drives cached)")
-    end
-end
-
-# Rollout-initialize the nominal unitary trajectory (anharmonicity included).
-# In the rollout template there is NO :var_Ũ⃗ component in the trajectory, so
-# we only need to warm-start :Ũ⃗.
+# Rollout-initialize the unitary trajectory (with anharmonicity included)
 let
     traj    = get_trajectory(qcp)
     us      = traj[:u]; dus = traj[:du]; ts = vec(traj[:t])
+    iso_dim = traj.dims[:Ũ⃗]
 
     nominal_sys = QuantumSystem(H_gate_frame, drive_bounds; time_dependent = true)
     nlp_pulse   = CubicSplinePulse(us, dus, ts)
@@ -239,39 +230,25 @@ let
 
     Ũ⃗_init = hcat([operator_to_iso_vec(nlp_qtraj(t)) for t in ts]...)
     traj.data[traj.components[:Ũ⃗], :] .= Ũ⃗_init
+    rows_var = traj.components[:var_Ũ⃗]
+    traj.data[rows_var[1:iso_dim], :] .= Ũ⃗_init
 
     U_init     = iso_vec_to_operator(Ũ⃗_init[:, end])
     U_init_sub = U_init[subspace_indices, subspace_indices]
-    F0    = abs2(tr(U_goal_4x4' * U_init_sub)) / 4^2
+    F0 = abs2(tr(U_goal_4x4' * U_init_sub)) / 4^2
     leak0 = 1 - real(tr(U_init_sub' * U_init_sub)) / 4
     @printf("Initial fidelity (rollout init, comp subspace): %.6f, leak %.3e\n", F0, leak0)
 end
 
-println("\nStarting solve (num_iter = $num_iter)...")
-solve_t0 = time()
-# constr_viol_tol = 1e-8 (vs Ipopt default 1e-4) is the critical setting that
-# makes the NLP's reported :Ũ⃗[:, end] actually match a high-accuracy
-# independent re-rollout of the optimized controls. With the default, F_nlp
-# overstates the real fidelity by ~10⁻³ to ~10⁻⁴ because Ipopt declares
-# success while bilinear-integrator residuals are still ~10⁻⁴ per row, and
-# those compound across N−1 knot transitions. See `optimizations.md` (the
-# "NLP-vs-reality fidelity gap" section) for the analysis.
 solve!(qcp; max_iter = num_iter, print_level = 5,
-    options = IpoptOptions(
-        eval_hessian = false,
-        constr_viol_tol = 1e-8,
-        tol             = 1e-8,
-        acceptable_tol  = 1e-8,
-        output_file = "ipopt_$(run_tag).log",
-    ))
-solve_wall = time() - solve_t0
-@printf("Solve wall time: %.1f s  (%.3f s / iter)\n", solve_wall, solve_wall / num_iter)
+    options = IpoptOptions(eval_hessian = false,
+        output_file = "ipopt_$(run_tag).log"))
 
 # =============================================================================
 # Results
 # =============================================================================
 traj   = get_trajectory(qcp)
-U_flat = iso_vec_to_operator(traj[:Ũ⃗][:, end])
+U_flat = iso_vec_to_operator(traj[:Ũ⃗][:, end])   # 9×9 unitary
 
 U_flat_sub = U_flat[subspace_indices, subspace_indices]
 F_flat     = abs2(tr(U_goal_4x4' * U_flat_sub)) / 4^2
@@ -284,39 +261,6 @@ U_full     = V_fall * U_flat * V_rise
 U_full_sub = U_full[subspace_indices, subspace_indices]
 F_full     = abs2(tr(U_iswap_4x4' * U_full_sub)) / 4^2
 @printf("Full gate F to iSWAP (computational):  %.8f\n", F_full)
-
-# -----------------------------------------------------------------------------
-# Integrator-honesty check: re-evolve the optimized controls with an
-# independent high-accuracy ODE solver and confirm the resulting unitary
-# matches what the NLP reported. If `constr_viol_tol = 1e-8` is doing its job
-# the gap should be ≲ 1e-5; a large gap means the optimiser was fooled by a
-# loose constraint tolerance and the reported fidelity is fictitious.
-# -----------------------------------------------------------------------------
-let
-    nominal_sys_v = QuantumSystem(H_gate_frame, drive_bounds; time_dependent = true)
-    Ũ⃗_ref = unitary_rollout(traj, nominal_sys_v;
-        interpolation = :cubic_hermite, abstol = 1e-12, reltol = 1e-12)
-    U_flat_ref      = iso_vec_to_operator(Ũ⃗_ref[:, end])
-    U_flat_ref_sub  = U_flat_ref[subspace_indices, subspace_indices]
-    F_flat_ref      = abs2(tr(U_goal_4x4' * U_flat_ref_sub)) / 4^2
-    leak_ref        = 1 - real(tr(U_flat_ref_sub' * U_flat_ref_sub)) / 4
-
-    U_full_ref      = V_fall * U_flat_ref * V_rise
-    U_full_ref_sub  = U_full_ref[subspace_indices, subspace_indices]
-    F_full_ref      = abs2(tr(U_iswap_4x4' * U_full_ref_sub)) / 4^2
-
-    @printf("\n--- Integrator-honesty check (high-acc independent re-rollout) ---\n")
-    @printf("Flat-top F  (NLP report): %.8f\n", F_flat)
-    @printf("Flat-top F  (independent reference): %.8f\n", F_flat_ref)
-    @printf("              |ΔF|:        %.2e\n", abs(F_flat - F_flat_ref))
-    @printf("Full-gate F (NLP report): %.8f\n", F_full)
-    @printf("Full-gate F (independent reference): %.8f\n", F_full_ref)
-    @printf("              |ΔF|:        %.2e\n", abs(F_full - F_full_ref))
-    @printf("Leakage (independent):     %.2e  (NLP: %.2e)\n", leak_ref, leak)
-    if abs(F_flat - F_flat_ref) > 1e-4
-        @warn "NLP fidelity overstates reality by >1e-4 — the optimizer's reported F is fictitious. Tighten constr_viol_tol further."
-    end
-end
 
 T_total = 2 * buffer_duration + 2 * buffer_flat_duration + traj[:t][end]
 φ_vz    = δ₁₂ * T_total
@@ -361,8 +305,7 @@ end
 @save joinpath(outdir, "trajectory.jld2") traj=traj
 
 open(joinpath(outdir, "parameters.txt"), "w") do io
-    println(io, "# 3-level Duffing rollout-form optimization, 5nsbuf layout")
-    println(io, "template = VariationalRolloutProblem")
+    println(io, "# 3-level Duffing optimization, 5nsbuf layout")
     println(io, "n_levels_per_qubit = $n_lvl")
     println(io, "η_anh = $η_anh rad/ns ($(round(η_anh/(2π)*1e3, digits=1)) MHz)")
     println(io, "g_eff = $g_eff rad/ns ($(round(g_eff/(2π)*1e3, digits=1)) MHz)")
@@ -376,7 +319,7 @@ open(joinpath(outdir, "parameters.txt"), "w") do io
     println(io, "θ_goal = $θ_goal rad")
     println(io, "Q = 0.0, Q_r = $Q_r, R = 1e-3")
     println(io, "F_threshold = $F_threshold")
-    println(io, "N_knots = $N_knots, num_iter = $num_iter, seed = $SEED")
+    println(io, "N_knots = $N_knots, num_iter = $num_iter, seed = 42")
     println(io, "Variational errors: n̂_1, n̂_2, n̂_1·n̂_2")
     println(io, "Computational subspace indices: $subspace_indices")
     println(io, "F_flat (subspace) = $F_flat")
@@ -386,5 +329,5 @@ end
 
 println("\nSaved to: ", abspath(outdir))
 println("Next: run duffing_3level_verify_5nsbuf.ipynb pointed at this outdir, replacing")
-println("the source RUN_DIR with $(basename(outdir)), to verify the rollout-3-level pulse")
+println("the source RUN_DIR with $(basename(outdir)), to verify the 3-level pulse")
 println("performs as advertised.")
