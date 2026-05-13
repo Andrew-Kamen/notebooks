@@ -383,6 +383,27 @@ julia robust_iswap_detuned_1MHz_300ns_3level_nhat_with_leakage.jl
 #   robust_iswap_detuned_1MHz_260nsmw_10nsgauss_10nsbuf_3lvl_170MHzanh_nhat_leak5_Qr1000_seed42/
 ```
 
+### Lifted-Z, NO leakage constraint, 2500 iters (fills the 2×2 design matrix)
+Companion to the killed `_random_init.jl` (which was n̂ + no-leakage + 2500 iter). Same seed 42, strict F=0.9999, Q_r=1000, but with lifted-Z robustness operators and NO `LeakageConstraint`. Tests whether operator choice matters even when leakage is unconstrained. ~24 h wall time.
+
+```bash
+julia robust_iswap_detuned_1MHz_300ns_3level_liftedZ_no_leakage.jl
+# Output dir:
+#   robust_iswap_detuned_1MHz_260nsmw_10nsgauss_10nsbuf_3lvl_170MHzanh_liftedZ_noLeak_Qr1000_iter2500_seed42/
+```
+
+To run in tmux:
+```bash
+tmux new -s liftedZ_noleak
+julia robust_iswap_detuned_1MHz_300ns_3level_liftedZ_no_leakage.jl 2>&1 | tee liftedZ_noleak.log
+# Ctrl-b d to detach
+```
+
+Plot when done:
+```bash
+julia plot_stretched_results.jl robust_iswap_detuned_1MHz_260nsmw_10nsgauss_10nsbuf_3lvl_170MHzanh_liftedZ_noLeak_Qr1000_iter2500_seed42
+```
+
 To run on SSH in tmux:
 ```bash
 ssh atkamen@<machine>
