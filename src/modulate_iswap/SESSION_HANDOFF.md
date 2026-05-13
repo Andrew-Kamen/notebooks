@@ -404,6 +404,31 @@ Plot when done:
 julia plot_stretched_results.jl robust_iswap_detuned_1MHz_260nsmw_10nsgauss_10nsbuf_3lvl_170MHzanh_liftedZ_noLeak_Qr1000_iter2500_seed42
 ```
 
+### Cascade continuation of the 200-iter stretched warm-start (recommended path)
+Loads `_stretched_warmstart.jl`'s `trajectory.jld2` (the 200-iter result that was still descending fast at obj ~1538) and continues for 1000 more iters at same Q_r=1000 / F=0.9999 / n̂ robustness. No leakage constraint. ~14 h wall time.
+
+Run order: the source dir must exist first, so finish (or have already finished) `_stretched_warmstart.jl` before launching this.
+
+```bash
+julia robust_iswap_detuned_1MHz_300ns_3level_stretched_cascade.jl
+# Output dir:
+#   robust_iswap_detuned_1MHz_260nsmw_10nsgauss_10nsbuf_3lvl_170MHzanh_cascade_Qr1000_iter1000_seed42/
+```
+
+In tmux:
+```bash
+tmux new -s cascade
+julia robust_iswap_detuned_1MHz_300ns_3level_stretched_cascade.jl 2>&1 | tee cascade.log
+# Ctrl-b d
+```
+
+Plot when done:
+```bash
+julia plot_stretched_results.jl robust_iswap_detuned_1MHz_260nsmw_10nsgauss_10nsbuf_3lvl_170MHzanh_cascade_Qr1000_iter1000_seed42
+```
+
+The cascade pattern generalizes: after this one finishes, copy `_stretched_cascade.jl`, change `CASCADE_SOURCE_DIR` to its output dir, change `run_tag` suffix to `_cascade2`, and run again. You can chain as many phases as you like — useful for "let me just leave this running until the descent flatlines."
+
 To run on SSH in tmux:
 ```bash
 ssh atkamen@<machine>
