@@ -343,3 +343,93 @@ end
 - **Q_r**: weight on the variational robustness objective `Q_r · Σ_i ‖∂U/∂ε_i‖²`.
 - **F_threshold**: target fidelity for the inequality constraint `F ≥ F_threshold`.
 - **`:Ũ⃗`**: Piccolo's symbol for the iso-vec representation of the unitary state (length 2·D²).
+
+---
+
+## 13. Quick-reference: run + plot commands
+
+All commands below run from `robust_control_sam/src/modulate_iswap/`.
+
+### Currently running on SSH
+```bash
+# 300 ns random init, n̂ robustness, NO leakage constraint (the original)
+julia robust_iswap_detuned_1MHz_300ns_3level_random_init.jl
+# 2500 iters, ~24 hours wall time
+# Output dir:
+#   robust_iswap_detuned_1MHz_260nsmw_10nsgauss_10nsbuf_3lvl_170MHzanh_random_Qr1000_seed42/
+```
+
+### Local 200-iter probes (already finished)
+```bash
+julia robust_iswap_detuned_2MHz_150ns_5nsbuf_3level_drag_warmstart.jl
+# Output: robust_iswap_detuned_2MHz_130nsmw_5nsgauss_5nsbuf_3lvl_170MHzanh_rollout_dragwarmstart_seed42/
+
+julia robust_iswap_detuned_1MHz_300ns_3level_stretched_warmstart.jl
+# Output: robust_iswap_detuned_1MHz_260nsmw_10nsgauss_10nsbuf_3lvl_170MHzanh_stretched_Qr1000_seed42/
+```
+
+### New scripts — to test the "leakage hard-constrained + lifted-Z vs n̂" hypothesis
+Both 1000 iters, random init (same seed 42 as the running random-init), strict process F=0.9999, hard `LeakageConstraint` at every knot (bound `1e-5` per matrix element, `LeakageObjective` weight 10.0). Estimated ~10-14 hours wall time each.
+
+```bash
+# Lifted-Z robustness (diag(1,-1,0) per qubit; cleaner optimization landscape)
+julia robust_iswap_detuned_1MHz_300ns_3level_liftedZ_with_leakage.jl
+# Output dir:
+#   robust_iswap_detuned_1MHz_260nsmw_10nsgauss_10nsbuf_3lvl_170MHzanh_liftedZ_leak5_Qr1000_seed42/
+
+# n̂ robustness (diag(0,1,2) per qubit; physically correct frequency-noise channel)
+julia robust_iswap_detuned_1MHz_300ns_3level_nhat_with_leakage.jl
+# Output dir:
+#   robust_iswap_detuned_1MHz_260nsmw_10nsgauss_10nsbuf_3lvl_170MHzanh_nhat_leak5_Qr1000_seed42/
+```
+
+To run on SSH in tmux:
+```bash
+ssh atkamen@<machine>
+cd ~/notebooks
+git pull origin main
+cd src/modulate_iswap
+
+# Each in its own tmux session so they run independently
+tmux new -s liftedZ
+julia robust_iswap_detuned_1MHz_300ns_3level_liftedZ_with_leakage.jl 2>&1 | tee liftedZ_leak.log
+# Ctrl-b d to detach
+
+tmux new -s nhat
+julia robust_iswap_detuned_1MHz_300ns_3level_nhat_with_leakage.jl 2>&1 | tee nhat_leak.log
+# Ctrl-b d to detach
+```
+
+### Plot results for any run
+The plotting script auto-detects parameters from `parameters.txt`:
+```bash
+# Stretched random-init (currently running on SSH)
+julia plot_stretched_results.jl robust_iswap_detuned_1MHz_260nsmw_10nsgauss_10nsbuf_3lvl_170MHzanh_random_Qr1000_seed42
+
+# Stretched warm-start (200-iter probe, already done)
+julia plot_stretched_results.jl robust_iswap_detuned_1MHz_260nsmw_10nsgauss_10nsbuf_3lvl_170MHzanh_stretched_Qr1000_seed42
+
+# New lifted-Z + leakage run (when done)
+julia plot_stretched_results.jl robust_iswap_detuned_1MHz_260nsmw_10nsgauss_10nsbuf_3lvl_170MHzanh_liftedZ_leak5_Qr1000_seed42
+
+# New n̂ + leakage run (when done)
+julia plot_stretched_results.jl robust_iswap_detuned_1MHz_260nsmw_10nsgauss_10nsbuf_3lvl_170MHzanh_nhat_leak5_Qr1000_seed42
+```
+
+Each plot command writes into `<run_dir>/figs/`:
+- `default_vs_robust.png` (linear F vs ε)
+- `default_vs_robust_log.png` (log infidelity vs ε)
+- `default_vs_robust_6panel.png` (both stacked)
+- `controls_full_gate.png` (pulse layout)
+- `combined.png` (money plot)
+- `ipopt_iter_history.png` (objective / inf_pr / inf_du vs iter)
+
+Plus `fidelity_*.csv` and `pulse_full_gate.csv` next to `parameters.txt` in the run dir.
+
+### Original 150 ns runs (for cross-comparison)
+```bash
+julia plot_results.jl robust_iswap_detuned_2MHz_130nsmw_5nsgauss_5nsbuf_3lvl_170MHzanh_rollout_dragwarmstart_seed42
+julia plot_results.jl robust_iswap_detuned_2MHz_130nsmw_5nsgauss_5nsbuf_3lvl_170MHzanh_rollout_seed42_Q100
+julia plot_results.jl robust_iswap_detuned_2MHz_130nsmw_5nsgauss_5nsbuf_rollout_1kiter_seed42
+```
+(`plot_results.jl` auto-detects the run's parameters too — works for both 150 ns and 300 ns runs.)
