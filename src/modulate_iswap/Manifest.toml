@@ -2,7 +2,7 @@
 
 julia_version = "1.11.5"
 manifest_format = "2.0"
-project_hash = "e7b7a1e17fbebce27323d7af8c98d6cb6b88e191"
+project_hash = "28d964acb791fb68f202803f2794fcd32bb80a90"
 
 [[deps.ADTypes]]
 git-tree-sha1 = "f7304359109c768cf32dc5fa2d371565bb63b68a"
@@ -618,7 +618,7 @@ version = "0.7.16"
 
 [[deps.DirectTrajOpt]]
 deps = ["ExponentialAction", "FiniteDiff", "ForwardDiff", "Ipopt", "LazyArrays", "Libdl", "LinearAlgebra", "MathOptInterface", "NamedTrajectories", "OrdinaryDiffEqTsit5", "Reexport", "SciMLBase", "SparseArrays", "Test", "TestItemRunner", "TestItems", "TrajectoryIndexingUtils"]
-path = "/home/atkamen/notebooks/src/modulate_iswap/../../../DirectTrajOpt.jl"
+path = "/Users/andrewkamen/Library/Mobile Documents/com~apple~CloudDocs/Documents/GitHub/robust_control_sam/src/modulate_iswap/../../../DirectTrajOpt.jl"
 uuid = "c823fa1f-8872-4af5-b810-2b9b72bbbf56"
 version = "0.8.10"
 
@@ -1966,7 +1966,7 @@ version = "2.8.3"
 
 [[deps.Piccolo]]
 deps = ["DataInterpolations", "DirectTrajOpt", "Distributions", "ExponentialAction", "ForwardDiff", "JLD2", "LaTeXStrings", "Libdl", "LinearAlgebra", "Makie", "NamedTrajectories", "OrdinaryDiffEqLinear", "OrdinaryDiffEqTsit5", "ProgressMeter", "Random", "Reexport", "SciMLBase", "SparseArrays", "SpecialFunctions", "SymbolicIndexingInterface", "TestItemRunner", "TestItems", "TrajectoryIndexingUtils"]
-path = "/home/atkamen/notebooks/src/modulate_iswap/../../../Piccolo.jl"
+path = "/Users/andrewkamen/Library/Mobile Documents/com~apple~CloudDocs/Documents/GitHub/robust_control_sam/src/modulate_iswap/../../../Piccolo.jl"
 uuid = "c4671d76-df94-11ed-2057-43d4fd632fad"
 version = "1.8.0"
 weakdeps = ["QuantumToolbox"]
