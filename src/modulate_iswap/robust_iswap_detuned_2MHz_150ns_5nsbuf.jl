@@ -829,13 +829,16 @@ g_gauss_fall = g_eff .* exp.(-(t_gauss_fall .- mw_end .- buffer_flat_duration).^
 FS = 32
 fig = Figure(size=(1500, 1200), fontsize=FS)
 
+# rad/ns → MHz conversion factor for displayed control/coupling amplitudes
+const MHz_per_radperns = 1e3 / (2π)
+
 # --- Row 2: g_eff envelope (spans 3 columns) ---
-ax1 = Axis(fig[2, 1:3], ylabel="g_eff (rad/ns)")
-lines!(ax1, t_gauss_rise, g_gauss_rise; color=:black, linewidth=2)
-lines!(ax1, t_buf_pre,    g_buf_pre;    color=:black, linewidth=2)
-lines!(ax1, t_mw,         g_mw;         color=:black, linewidth=2, label="g_eff")
-lines!(ax1, t_buf_post,   g_buf_post;   color=:black, linewidth=2)
-lines!(ax1, t_gauss_fall, g_gauss_fall; color=:black, linewidth=2)
+ax1 = Axis(fig[2, 1:3], ylabel="g_eff (MHz)")
+lines!(ax1, t_gauss_rise, g_gauss_rise .* MHz_per_radperns; color=:black, linewidth=2)
+lines!(ax1, t_buf_pre,    g_buf_pre    .* MHz_per_radperns; color=:black, linewidth=2)
+lines!(ax1, t_mw,         g_mw         .* MHz_per_radperns; color=:black, linewidth=2, label="g_eff")
+lines!(ax1, t_buf_post,   g_buf_post   .* MHz_per_radperns; color=:black, linewidth=2)
+lines!(ax1, t_gauss_fall, g_gauss_fall .* MHz_per_radperns; color=:black, linewidth=2)
 # Shade Gaussian edges in lighter gray, buffers in slightly darker gray
 vspan!(ax1, [0],                                 [buffer_duration];                              color=(:gray, 0.1))
 vspan!(ax1, [buffer_duration],                   [mw_start];                                     color=(:goldenrod, 0.15))
@@ -843,19 +846,19 @@ vspan!(ax1, [mw_end],                            [mw_end + buffer_flat_duration]
 vspan!(ax1, [mw_end + buffer_flat_duration],     [gate_end];                                     color=(:gray, 0.1))
 
 # --- Row 3: microwave controls (only in mw region) ---
-ax2 = Axis(fig[3, 1:3], xlabel="t (ns)", ylabel="amplitude (rad/ns)")
+ax2 = Axis(fig[3, 1:3], xlabel="t (ns)", ylabel="amplitude (MHz)")
 mw_labels = ["u_X1", "u_Y1", "u_X2", "u_Y2"]
 mw_colors = [:crimson, :orange, :forestgreen, :purple]
 
 for (i, (lbl, c)) in enumerate(zip(mw_labels, mw_colors))
-    lines!(ax2, ts_fine_mw .+ mw_start, vec(us_fine_mw[i, :]);
+    lines!(ax2, ts_fine_mw .+ mw_start, vec(us_fine_mw[i, :]) .* MHz_per_radperns;
         label=lbl, color=c, linewidth=2)
-    scatter!(ax2, ts_knots .+ mw_start, vec(us_knots[i, :]);
+    scatter!(ax2, ts_knots .+ mw_start, vec(us_knots[i, :]) .* MHz_per_radperns;
         color=:black, markersize=8,
         label = i == 1 ? "knots" : nothing)
 end
-hlines!(ax2, [a_bound, -a_bound]; linestyle=:dash, color=:gray, label="±bound")
-vspan!(ax2, [0],                                 [buffer_duration];                              color=(:gray, 0.1), label="Gauss")
+hlines!(ax2, [a_bound, -a_bound] .* MHz_per_radperns; linestyle=:dash, color=:gray, label="±bound")
+vspan!(ax2, [0],                                 [buffer_duration];                              color=(:gray, 0.1), label="edge")
 vspan!(ax2, [buffer_duration],                   [mw_start];                                     color=(:goldenrod, 0.15), label="buffer")
 vspan!(ax2, [mw_end],                            [mw_end + buffer_flat_duration];                color=(:goldenrod, 0.15))
 vspan!(ax2, [mw_end + buffer_flat_duration],     [gate_end];                                     color=(:gray, 0.1))
@@ -920,3 +923,4 @@ end
 
 display(fig)
 save(joinpath(outdir, "figs", "combined.png"), fig)
+save(joinpath(outdir, "figs", "combined.pdf"), fig)

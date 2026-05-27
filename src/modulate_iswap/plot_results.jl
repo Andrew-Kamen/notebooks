@@ -36,6 +36,7 @@ Pkg.develop([
     Pkg.PackageSpec(path = piccolo_path),
     Pkg.PackageSpec(path = directtrajopt_path),
 ])
+Pkg.add(["MathTeXEngine", "LaTeXStrings"])
 Pkg.instantiate()
 
 using Piccolo
@@ -44,6 +45,20 @@ using Random
 using Printf
 using CairoMakie
 using JLD2
+using MathTeXEngine
+using LaTeXStrings
+
+# Serif (TeX) theme matching the abcde poster plot style
+set_theme!(Theme(
+    fonts = (;
+        regular     = texfont(:text),
+        bold        = texfont(:bold),
+        italic      = texfont(:italic),
+        bold_italic = texfont(:bolditalic),
+        ticks       = "TeX Gyre Heros Makie",
+    ),
+    Axis = (; xgridvisible = false),
+))
 
 # -----------------------------------------------------------------------------
 # Arg parsing
@@ -374,7 +389,7 @@ err_colors = [:red, :blue, :green]
 # (1) F vs ε — linear scale
 fig = Figure(fontsize = 22, size = (1200, 400))
 for (col, ((err_op, err_name), ecol)) in enumerate(zip(ops.err_ops, err_colors))
-    ax = Axis(fig[1, col], xlabel = "ε (MHz)", ylabel = "Fidelity",
+    ax = Axis(fig[1, col], xlabel = L"\epsilon~(\text{MHz})", ylabel = "Fidelity",
         title = "$err_name error")
     lines!(ax, εs .* 1000 ./ (2π), F_default[err_name];
         color = ecol, linewidth = 2, linestyle = :dash, label = "Default (GS)")
@@ -389,7 +404,7 @@ println("Wrote figs/default_vs_robust.png")
 # (2) 1-F vs ε — log scale (infidelity)
 fig = Figure(fontsize = 22, size = (1200, 400))
 for (col, ((err_op, err_name), ecol)) in enumerate(zip(ops.err_ops, err_colors))
-    ax = Axis(fig[1, col], xlabel = "ε (MHz)", ylabel = "1 - Fidelity",
+    ax = Axis(fig[1, col], xlabel = L"\epsilon~(\text{MHz})", ylabel = "1 - Fidelity",
         title = "$err_name error", yscale = log10)
     lines!(ax, εs .* 1000 ./ (2π), max.(1 .- F_default[err_name], 1e-16);
         color = :black, linewidth = 2, linestyle = :dash, label = "Default")
@@ -404,7 +419,7 @@ println("Wrote figs/default_vs_robust_log.png")
 # (3) 2-row variant (linear top, log bottom)
 fig = Figure(fontsize = 22, size = (1200, 800))
 for (col, ((err_op, err_name), ecol)) in enumerate(zip(ops.err_ops, err_colors))
-    ax_lin = Axis(fig[1, col], xlabel = "ε (MHz)", ylabel = "Fidelity",
+    ax_lin = Axis(fig[1, col], xlabel = L"\epsilon~(\text{MHz})", ylabel = "Fidelity",
         title = "$err_name error")
     lines!(ax_lin, εs .* 1000 ./ (2π), F_default[err_name];
         color = ecol, linewidth = 2, linestyle = :dash, label = "Default (GS)")
@@ -413,7 +428,7 @@ for (col, ((err_op, err_name), ecol)) in enumerate(zip(ops.err_ops, err_colors))
     hlines!(ax_lin, [F_threshold]; linestyle = :dot, color = :black, linewidth = 0.5)
     if col == 1; axislegend(ax_lin, position = :lb); end
 
-    ax_log = Axis(fig[2, col], xlabel = "ε (MHz)", ylabel = "1 − Fidelity",
+    ax_log = Axis(fig[2, col], xlabel = L"\epsilon~(\text{MHz})", ylabel = "1 − Fidelity",
         yscale = log10)
     lines!(ax_log, εs .* 1000 ./ (2π), max.(1 .- F_default[err_name], 1e-16);
         color = ecol, linewidth = 2, linestyle = :dash, label = "Default (GS)")
@@ -485,10 +500,10 @@ println("Wrote figs/controls_full_gate.png")
 
 # (5) Combined "money plot" — infidelity sweeps + pulse layout in one figure
 FS = 30
-fig = Figure(size = (1500, 1200), fontsize = FS)
+fig = Figure(size = (1500, 810), fontsize = FS)
 # Top row: infidelity panels
 for (col, ((err_op, err_name), ecol)) in enumerate(zip(ops.err_ops, err_colors))
-    ax = Axis(fig[1, col], xlabel = "ε (MHz)", ylabel = "1 - Fidelity",
+    ax = Axis(fig[1, col], xlabel = L"\epsilon~(\text{MHz})", ylabel = "1 - Fidelity",
         title = "$err_name error", yscale = log10)
     lines!(ax, εs .* 1000 ./ (2π), max.(1 .- F_default[err_name], 1e-16);
         color = :black, linewidth = 2, linestyle = :dash, label = "Default")
@@ -497,31 +512,74 @@ for (col, ((err_op, err_name), ecol)) in enumerate(zip(ops.err_ops, err_colors))
     ylims!(ax, 1e-4, 1.0)
     if col == 1; axislegend(ax, position = :lb, labelsize = FS); end
 end
+# rad/ns → MHz conversion factor for displayed control/coupling amplitudes
+const MHz_per_radperns = 1e3 / (2π)
 # Middle row: g_eff envelope
-ax_g = Axis(fig[2, 1:3], ylabel = "g_eff (rad/ns)")
-lines!(ax_g, t_gauss_rise, g_gauss_rise; color = :black, linewidth = 2)
-lines!(ax_g, t_buf_pre,    g_buf_pre;    color = :black, linewidth = 2)
-lines!(ax_g, t_mw,         g_mw;         color = :black, linewidth = 2)
-lines!(ax_g, t_buf_post,   g_buf_post;   color = :black, linewidth = 2)
-lines!(ax_g, t_gauss_fall, g_gauss_fall; color = :black, linewidth = 2)
+ax_g = Axis(fig[2, 1:3], ylabel = "g_eff (MHz)")
+lines!(ax_g, t_gauss_rise, g_gauss_rise .* MHz_per_radperns; color = :black, linewidth = 2)
+lines!(ax_g, t_buf_pre,    g_buf_pre    .* MHz_per_radperns; color = :black, linewidth = 2)
+lines!(ax_g, t_mw,         g_mw         .* MHz_per_radperns; color = :black, linewidth = 2, label = "g_eff")
+lines!(ax_g, t_buf_post,   g_buf_post   .* MHz_per_radperns; color = :black, linewidth = 2)
+lines!(ax_g, t_gauss_fall, g_gauss_fall .* MHz_per_radperns; color = :black, linewidth = 2)
 vspan!(ax_g, [0],                                 [buffer_duration];                              color = (:gray, 0.1))
 vspan!(ax_g, [buffer_duration],                   [mw_start];                                     color = (:goldenrod, 0.15))
 vspan!(ax_g, [mw_end],                            [mw_end + buffer_flat_duration];                color = (:goldenrod, 0.15))
 vspan!(ax_g, [mw_end + buffer_flat_duration],     [gate_end];                                     color = (:gray, 0.1))
 # Bottom row: microwaves
-ax_mw = Axis(fig[3, 1:3], xlabel = "t (ns)", ylabel = "u (rad/ns)")
+ax_mw = Axis(fig[3, 1:3], xlabel = "t (ns)", ylabel = "amplitude (MHz)")
 for (i, (lbl, c)) in enumerate(zip(mw_labels, mw_colors))
-    lines!(ax_mw, ts_fine .+ mw_start, vec(us_fine[i, :]); label = lbl, color = c, linewidth = 2)
-    scatter!(ax_mw, ts_knots .+ mw_start, vec(us_knots[i, :]); color = :black, markersize = 6)
+    lines!(ax_mw, ts_fine .+ mw_start, vec(us_fine[i, :]) .* MHz_per_radperns; label = lbl, color = c, linewidth = 2)
+    scatter!(ax_mw, ts_knots .+ mw_start, vec(us_knots[i, :]) .* MHz_per_radperns;
+        color = :black, markersize = 6, label = i == 1 ? "knots" : nothing)
 end
-hlines!(ax_mw, [a_bound, -a_bound]; linestyle = :dash, color = :gray)
-vspan!(ax_mw, [0],                                 [buffer_duration];                              color = (:gray, 0.1))
-vspan!(ax_mw, [buffer_duration],                   [mw_start];                                     color = (:goldenrod, 0.15))
+hlines!(ax_mw, [a_bound, -a_bound] .* MHz_per_radperns; linestyle = :dash, color = :gray, label = "±bound")
+vspan!(ax_mw, [0],                                 [buffer_duration];                              color = (:gray, 0.1), label = "edge")
+vspan!(ax_mw, [buffer_duration],                   [mw_start];                                     color = (:goldenrod, 0.15), label = "buffer")
 vspan!(ax_mw, [mw_end],                            [mw_end + buffer_flat_duration];                color = (:goldenrod, 0.15))
 vspan!(ax_mw, [mw_end + buffer_flat_duration],     [gate_end];                                     color = (:gray, 0.1))
 linkxaxes!(ax_g, ax_mw)
-axislegend(ax_mw, position = :rb, labelsize = FS)
+
+# Combined pulse-plot legend (floats over the mostly-empty g_eff panel)
+all_plots, all_labels = [], String[]
+for ax in (ax_g, ax_mw)
+    for p in ax.scene.plots
+        if haskey(p.attributes, :label)
+            lbl = p.attributes[:label][]
+            if lbl !== nothing && !isempty(string(lbl))
+                push!(all_plots, p)
+                push!(all_labels, string(lbl))
+            end
+        end
+    end
+end
+desired_first = ["g_eff", "knots"]
+ordered_plots, ordered_labels = [], String[]
+for lbl in desired_first
+    idx = findfirst(==(lbl), all_labels)
+    if idx !== nothing
+        push!(ordered_plots, all_plots[idx])
+        push!(ordered_labels, all_labels[idx])
+    end
+end
+for (p, lbl) in zip(all_plots, all_labels)
+    if !(lbl in desired_first)
+        push!(ordered_plots, p)
+        push!(ordered_labels, lbl)
+    end
+end
+Legend(fig[2, 1:3], ordered_plots, ordered_labels;
+    halign          = :center,
+    valign          = :center,
+    tellwidth       = false,
+    tellheight      = false,
+    framevisible    = true,
+    backgroundcolor = (:white, 0.85),
+    nbanks          = 3,
+    labelsize       = FS,
+)
+
 save(joinpath(run_dir, "figs", "combined.png"), fig)
-println("Wrote figs/combined.png")
+save(joinpath(run_dir, "figs", "combined.pdf"), fig)
+println("Wrote figs/combined.png + combined.pdf")
 
 println("\nAll outputs saved under: ", abspath(run_dir))
