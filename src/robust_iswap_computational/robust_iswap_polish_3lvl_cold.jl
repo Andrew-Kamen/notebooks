@@ -5,6 +5,14 @@
 
 import Pkg
 Pkg.activate(@__DIR__)
+piccolo_path       = joinpath(@__DIR__, "..", "..", "..", "Piccolo.jl")
+directtrajopt_path = joinpath(@__DIR__, "..", "..", "..", "DirectTrajOpt.jl")
+Pkg.develop([
+    Pkg.PackageSpec(path = piccolo_path),
+    Pkg.PackageSpec(path = directtrajopt_path),
+])
+Pkg.add(["CairoMakie", "Ipopt", "FFTW", "JLD2"])
+Pkg.instantiate()
 
 using Piccolo, FFTW, LinearAlgebra, Printf, Random, SparseArrays, JLD2, CairoMakie
 using DirectTrajOpt.Constraints: AbstractNonlinearConstraint
