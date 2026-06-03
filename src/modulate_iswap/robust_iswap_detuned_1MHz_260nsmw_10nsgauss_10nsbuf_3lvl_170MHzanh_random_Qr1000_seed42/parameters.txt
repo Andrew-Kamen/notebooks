@@ -1,0 +1,21 @@
+# Stretched 3-level Duffing rollout, RANDOM INIT (no warm-start)
+template = VariationalRolloutProblem + strict subspace F constraint
+n_levels_per_qubit = 3
+η_anh = -1.0681415022205298 rad/ns (-170.0 MHz)
+g_eff = 0.006283185307179587 rad/ns (1.0 MHz)
+δ₁₂   = 0.37699111843077515 rad/ns
+a_bound = 0.06283185307179587 rad/ns
+σ_rise = 2.5 ns
+buffer_duration = 10.0 ns
+buffer_flat_duration = 10.0 ns
+T_total_gate_ns = 300.0 ns
+T_total_ns (mw region) = 260.0 ns
+θ_goal = 0.6202372208012827 rad
+Q = 0.0, Q_r = 1000.0, R = 1e-3
+F_threshold = 0.9999 (strict subspace process F)
+N_knots = 24, num_iter = 2500, seed = 42
+Variational errors: n̂_1, n̂_2, n̂_1·n̂_2
+Computational subspace indices: [1, 2, 4, 5]
+F_flat (subspace) = 0.999952237074318
+Leakage           = 2.8668198221892816e-5
+F_full (vs iSWAP, static-V_rise calc) = 0.9527398669298025
